@@ -3,10 +3,11 @@
 A collection of simple scripts for common Windows tasks, designed for ease of use.
 
 ## Features
-- **Shutdown**: Quickly shut down the computer.
-- **Restart**: Restart the computer instantly.
-- **Sleep**: Put the computer to sleep.
-- **Wi-Fi On/Off**: Enable or disable Wi-Fi (requires editing Wi-Fi name in shortcut).
+- **Shutdown**: Shut down the computer in 10 Seconds with countdown.
+- **Restart**: Restart the computer in 10 Seconds with countdown.
+- **Sleep**: Put the computer to sleep in 10 Seconds with countdown.
+- **Wi-Fi On**: Enable Wi-Fi (requires editing Wi-Fi name in shortcut).
+- **Wi-Fi off**: Disable Wi-Fi.
 - **Display and Screen Timeout**: Adjust display and screen timeout settings.
 - **Display Switch**: Toggle between "PC screen only" and "Extend" modes for multiple monitors.
 
