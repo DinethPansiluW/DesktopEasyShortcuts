@@ -1,17 +1,17 @@
 @echo off
-title Restart in 10 seconds...
-color 0A
-setlocal enabledelayedexpansion
+title Restart Countdown
+set /a countdown=10
 
-:: Disable Ctrl+C prompt
-break >nul
-
-echo Press Ctrl+C to cancel (no confirmation)
+echo Computer will RESTART in %countdown% seconds...
+echo Press Ctrl+C to cancel
 echo.
 
-for /l %%i in (10,-1,1) do (
-    echo Restarting in %%i seconds...
-    timeout /t 1 /nobreak >nul
-)
+:countdown
+if %countdown% LEQ 0 goto restart
+echo Restarting in %countdown%...
+timeout /t 1 /nobreak >nul
+set /a countdown-=1
+goto countdown
 
-shutdown /r /t 0 /f
+:restart
+shutdown /r /t 0

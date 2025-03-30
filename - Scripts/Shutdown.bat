@@ -1,15 +1,16 @@
-
 @echo off
-title Shutdown in 10 seconds...
-color 0A
-setlocal enabledelayedexpansion
+title Shutdown Countdown
+set /a countdown=10
 
-echo Press Ctrl+C to cancel...
+echo Computer will shutdown in %countdown% seconds...
 echo.
 
-for /l %%i in (10,-1,1) do (
-    echo Shutting down in %%i seconds...
-    timeout /t 1 /nobreak >nul
-)
+:countdown
+if %countdown% LEQ 0 goto shutdown
+echo Shutting down in %countdown%...
+timeout /t 1 /nobreak >nul
+set /a countdown-=1
+goto countdown
 
+:shutdown
 shutdown /s /t 0
