@@ -1,0 +1,9 @@
+﻿Active Power Scheme: 381b4222-f694-41f0-9685-ff5bb260df2e
+
+[Display Timeout]
+AC (Plugged In): 5 minutes
+DC (On Battery): 2 minutes
+
+[Sleep Timeout]
+AC (Plugged In): 0 minutes
+DC (On Battery): 0 minutes
