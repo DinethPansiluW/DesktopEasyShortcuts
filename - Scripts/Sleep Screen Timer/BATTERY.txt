@@ -1,2 +1,0 @@
-Screen=2
-Sleep=5
