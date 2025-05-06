@@ -17,7 +17,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 ## 📁 Installation
 1. Download all scripts and icons.
-2. Copy the script folder to the `D:` drive (e.g., `D:\EasyScripts`).
+2. Copy the script folder to the `D:` drive (e.g., `D:\-Scripts`).
 3. Copy the shortcuts (with icons) from the `Shortcuts` folder to your desktop.
 
 ## 🛠️ Usage
