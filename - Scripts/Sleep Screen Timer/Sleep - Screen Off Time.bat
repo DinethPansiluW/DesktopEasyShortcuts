@@ -6,6 +6,7 @@ set "GREEN=[32m"
 set "RED=[31m"
 set "ORANGE=[33m"
 set "RESET=[0m"
+set "PINK=[1;35m"
 
 :: Admin check
 net session >nul 2>&1
@@ -98,11 +99,12 @@ echo.
 echo %GREEN%5. Backup Times
 echo 6. Restore Settings from Backup
 echo 7. Info Backup
-echo 8. Go to Hibernate Manager
-echo 0. Change Recommended Times
+echo %PINK%8. Go to Hibernate Manager
+echo 9. Go to Hybrid Sleep Manager
+echo %RESET%0. Change Recommended Times
 
 echo.
-set /p "choice=%RESET%Enter choice: %RESET%"
+set /p "choice=%RESET%Enter choice: %ORANGE%"
 
 :: Handle menu
 if "%choice%"=="1" call :APPLY_RECOMMENDED
@@ -117,6 +119,7 @@ if "%choice%"=="5" (
 if "%choice%"=="6" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
 if "%choice%"=="7" call :INFO_BACKUP & pause & goto MAIN_LOOP
 if "%choice%"=="8" call Hybernate.bat
+if "%choice%"=="9" call HybridSleep.bat
 if "%choice%"=="0" call :CHANGE_PRESETS & goto MAIN_LOOP
 
 goto MAIN_LOOP
