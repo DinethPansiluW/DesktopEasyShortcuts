@@ -7,8 +7,8 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - 🔁 **Restart**: Restart the computer in 5 seconds with countdown.
 - 🌙 **Sleep**: Put the computer to sleep in 5 seconds with countdown.
 - 📶 **Wi-Fi On/Off**: Toggle Wi-Fi status. 👉 *Read below for important settings.*
-- 🖤 **Black Screen**: Instantly turn off the screen without sleep or shutdown.
-- ⏱️ **Sleep & Screen Timer**: Automatically put the device to sleep and turn off the screen after a set time.
+- 🖤 **Black Screen**: Instantly turn off the screen without sleep or shutdown or hibernate.
+- ⏱️ **Sleep & Screen Timer**: Automatically put the device to sleep, hibernate and turn off the screen after a set time.
 - ♻️ **Restore Time**: Restore default screen and sleep settings.
 - 🟢 **Schedule Shutdown**: Schedule a shutdown at a specific time.
 - 📴 **Wi-Fi OFF 7AM**: Automatically turn off Wi-Fi at 7 AM.
