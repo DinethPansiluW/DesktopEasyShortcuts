@@ -29,7 +29,7 @@ if not defined mode set "mode=AC"
 
 :: Elevate if needed
 NET FILE 1>nul 2>nul || (
-    powershell -Command "Start-Process cmd -ArgumentList '/c \"%~f0\"' -Verb RunAs"
+    powershell -Command "Start-Process cmd -ArgumentList '/c "%~f0"' -Verb RunAs"
     exit /b
 )
 
@@ -43,7 +43,7 @@ set "SUB_DISPLAY=7516b95f-f776-4464-8c53-06167f40cc99"
 set "BACKUP_FILE=%~dp0power_settings_backup.txt"
 set "RECOMMEND_BACKUP_FILE=%~dp0recommended_presets_backup.txt"
 
-:: Initialize recommended presets (Updated)
+:: Initialize recommended presets
 set "balanced_scr=10"
 set "balanced_slp=15"
 set "balanced_hib=60"
@@ -51,7 +51,7 @@ set "battery_scr=5"
 set "battery_slp=10"
 set "battery_hib=30"
 
-:: load recommended presets from backup if exists
+:: Load recommended presets from backup if exists
 if exist "%RECOMMEND_BACKUP_FILE%" (
     for /f "tokens=1,2 delims==" %%A in ('findstr /b /i "balanced_scr" "%RECOMMEND_BACKUP_FILE%"') do set "balanced_scr=%%B"
     for /f "tokens=1,2 delims==" %%A in ('findstr /b /i "balanced_slp" "%RECOMMEND_BACKUP_FILE%"') do set "balanced_slp=%%B"
@@ -77,31 +77,33 @@ echo !spacer!                    %RED%Mode: %ORANGE%!mode!%RESET%
 echo.
 echo !spacer!          %GREEN%AC             %RESET%^|           %GREEN%BATTERY%RESET%
 
-echo !spacer!Screen OFF - %ORANGE%%ac_scr_display%%RESET%      ^|     Screen OFF - %ORANGE%%battery_scr_display%%RESET%
-echo !spacer!Sleep      - %ORANGE%%ac_slp_display%%RESET%      ^|     Sleep      - %ORANGE%%battery_slp_display%%RESET%
+echo !spacer!Screen OFF - %ORANGE%!ac_scr_display!%RESET%      ^|     Screen OFF - %ORANGE%!battery_scr_display!%RESET%
+echo !spacer!Sleep      - %ORANGE%!ac_slp_display!%RESET%      ^|     Sleep      - %ORANGE%!battery_slp_display!%RESET%
 echo.
-echo !spacer!Hibernate  - %ORANGE%%ac_hib_display%%RESET%      ^|     Hibernate  - %ORANGE%%battery_hib_display%%RESET%
+echo !spacer!Hibernate  - %ORANGE%!ac_hib_display!%RESET%      ^|     Hibernate  - %ORANGE%!battery_hib_display!%RESET%
 
 echo.
 echo !spacer!===================================================
 
 echo.
 if /i "%mode%"=="AC" (
-    echo 1. Recommended Settings ^(Screen %ORANGE%%balanced_scr%%RESET%m, Sleep %ORANGE%%balanced_slp%%RESET%m, Hibernate %ORANGE%%balanced_hib%%RESET%m^)
+    echo 1. Recommended Settings ^(Screen %ORANGE%!balanced_scr!%RESET%m, Sleep %ORANGE%!balanced_slp!%RESET%m, Hibernate %ORANGE%!balanced_hib!%RESET%m^)
 ) else (
-    echo 1. Recommended Settings ^(Screen %ORANGE%%battery_scr%%RESET%m, Sleep %ORANGE%%battery_slp%%RESET%m, Hibernate %ORANGE%%battery_hib%%RESET%m^)
+    echo 1. Recommended Settings ^(Screen %ORANGE%!battery_scr!%RESET%m, Sleep %ORANGE%!battery_slp!%RESET%m, Hibernate %ORANGE%!battery_hib!%RESET%m^)
 )
 
 echo 2. Never (Screen OFF, Sleep, Hibernate)
-echo 3. Custom Settings
-echo 4. Switch Mode (AC/Battery)
+echo 3. Change Screen OFF time only
+echo 4. Change Sleep time only
+echo 5. Custom Settings All
+echo 6. Switch Mode (AC/Battery)
 echo.
-echo %GREEN%5. Backup Times
-echo 6. Restore Settings from Backup
-echo 7. Info Backup
-echo %PINK%8. Go to Hibernate Manager
-echo 9. Go to Hybrid Sleep Manager
-echo %RESET%0. Change Recommended Times
+echo %GREEN%7. Backup Times
+echo 8. Restore Settings from Backup
+echo 9. Info Backup
+echo %PINK%A. Go to Hibernate Manager
+echo B. Go to Hybrid Sleep Manager
+echo %RESET%0. Change Recommended Times (Current Mode)
 
 echo.
 set /p "choice=%RESET%Enter choice: %ORANGE%"
@@ -109,26 +111,24 @@ set /p "choice=%RESET%Enter choice: %ORANGE%"
 :: Handle menu
 if "%choice%"=="1" call :APPLY_RECOMMENDED
 if "%choice%"=="2" set "scr=0" & set "slp=0" & set "hib=0" & goto APPLY
-if "%choice%"=="3" call :CUSTOM_SETTINGS & goto APPLY
-if "%choice%"=="4" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
-if "%choice%"=="5" (
-    call :BACKUP_TIMES
-    call :BACKUP_TIMES_POW
-    goto MAIN_LOOP
-)
-if "%choice%"=="6" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
-if "%choice%"=="7" call :INFO_BACKUP & pause & goto MAIN_LOOP
-if "%choice%"=="8" call Hybernate.bat
-if "%choice%"=="9" call HybridSleep.bat
+if "%choice%"=="3" call :CHANGE_SCREEN_ONLY
+if "%choice%"=="4" call :CHANGE_SLEEP_ONLY
+if "%choice%"=="5" call :CUSTOM_SETTINGS & goto APPLY
+if "%choice%"=="6" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
+if "%choice%"=="7" (call :BACKUP_TIMES & call :BACKUP_TIMES_POW & goto MAIN_LOOP)
+if "%choice%"=="8" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
+if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
+if /i "%choice%"=="a" call Hybernate.bat
+if /i "%choice%"=="b" call HybridSleep.bat
 if "%choice%"=="0" call :CHANGE_PRESETS & goto MAIN_LOOP
 
 goto MAIN_LOOP
 
 :APPLY_RECOMMENDED
 if /i "%mode%"=="AC" (
-    set "scr=%balanced_scr%" & set "slp=%balanced_slp%" & set "hib=%balanced_hib%"
+    set "scr=!balanced_scr!" & set "slp=!balanced_slp!" & set "hib=!balanced_hib!"
 ) else (
-    set "scr=%battery_scr%" & set "slp=%battery_slp%" & set "hib=%battery_hib%"
+    set "scr=!battery_scr!" & set "slp=!battery_slp!" & set "hib=!battery_hib!"
 )
 goto APPLY
 
@@ -148,29 +148,55 @@ goto MAIN_LOOP
 
 :CHANGE_PRESETS
 echo.
-echo %GREEN%Change Recommended Times%RESET%
+echo %GREEN%Change Recommended Times for %mode% Mode%RESET%
 echo.
-echo AC Mode (Balanced)
-set /p "balanced_scr=New Screen timeout (current: %balanced_scr%m): "
-set /p "balanced_slp=New Sleep timeout (current: %balanced_slp%m): "
-set /p "balanced_hib=New Hibernate timeout (current: %balanced_hib%m): "
-echo.
-echo Battery Mode (Power Saver)
-set /p "battery_scr=New Screen timeout (current: %battery_scr%m): "
-set /p "battery_slp=New Sleep timeout (current: %battery_slp%m): "
-set /p "battery_hib=New Hibernate timeout (current: %battery_hib%m): "
-:: save recommended presets to backup
+if /i "%mode%"=="AC" (
+    echo AC Mode (Balanced)
+    set /p "balanced_scr=New Screen timeout (current: %balanced_scr%m): "
+    set /p "balanced_slp=New Sleep timeout (current: %balanced_slp%m): "
+    set /p "balanced_hib=New Hibernate timeout (current: %balanced_hib%m): "
+) else (
+    echo Battery Mode (Power Saver)
+    set /p "battery_scr=New Screen timeout (current: %battery_scr%m): "
+    set /p "battery_slp=New Sleep timeout (current: %battery_slp%m): "
+    set /p "battery_hib=New Hibernate timeout (current: %battery_hib%m): "
+)
+:: Save all presets to backup
 (
-  echo balanced_scr=%balanced_scr%
-  echo balanced_slp=%balanced_slp%
-  echo balanced_hib=%balanced_hib%
-  echo battery_scr=%battery_scr%
-  echo battery_slp=%battery_slp%
-  echo battery_hib=%battery_hib%
+    echo balanced_scr=%balanced_scr%
+    echo balanced_slp=%balanced_slp%
+    echo balanced_hib=%balanced_hib%
+    echo battery_scr=%battery_scr%
+    echo battery_slp=%battery_slp%
+    echo battery_hib=%battery_hib%
 ) > "%RECOMMEND_BACKUP_FILE%"
-echo Recommended times updated and backed up!
+echo Recommended times for %mode% updated and backed up!
 timeout /t 2 >nul
 exit /b
+
+:CHANGE_SCREEN_ONLY
+echo.
+echo %GREEN%Changing Screen OFF Time Only%RESET%
+echo.
+set /p "new_scr=Enter new Screen OFF time in minutes (0 for Never): "
+if /i "%mode%"=="AC" (
+    powercfg -change -monitor-timeout-ac %new_scr%
+) else (
+    powercfg -change -monitor-timeout-dc %new_scr%
+)
+goto MAIN_LOOP
+
+:CHANGE_SLEEP_ONLY
+echo.
+echo %GREEN%Changing Sleep Time Only%RESET%
+echo.
+set /p "new_slp=Enter new Sleep time in minutes (0 for Never): "
+if /i "%mode%"=="AC" (
+    powercfg -change -standby-timeout-ac %new_slp%
+) else (
+    powercfg -change -standby-timeout-dc %new_slp%
+)
+goto MAIN_LOOP
 
 :CUSTOM_SETTINGS
 echo.
@@ -208,7 +234,7 @@ if "!DC_DEC!"=="0" (set "battery_hib_display=Never") else (set /a TMP=!DC_DEC!/6
 goto :eof
 
 :BACKUP_TIMES
-:: backup current actual settings to BACKUP_FILE
+:: Backup current actual settings to BACKUP_FILE
 echo Mode=AC > "%BACKUP_FILE%"
 echo Screen=%ac_scr_display% >> "%BACKUP_FILE%"
 echo Sleep=%ac_slp_display% >> "%BACKUP_FILE%"
@@ -218,13 +244,11 @@ echo Mode=BATTERY >> "%BACKUP_FILE%"
 echo Screen=%battery_scr_display% >> "%BACKUP_FILE%"
 echo Sleep=%battery_slp_display% >> "%BACKUP_FILE%"
 echo Hibernate=%battery_hib_display% >> "%BACKUP_FILE%"
-
 echo %GREEN%Current settings backed up to %BACKUP_FILE% %RESET%
 timeout /t 2 >nul
 exit /b
 
 :BACKUP_TIMES_POW
-rem — export the entire active power scheme to a .pow file
 set "POWFILE=%~dp0power_backup.pow"
 powercfg /export "%POWFILE%" SCHEME_CURRENT
 if %errorlevel% neq 0 (
@@ -242,7 +266,6 @@ if not exist "%POWFILE%" (
     timeout /t 2 >nul
     exit /b
 )
-rem — import the scheme (this creates a new GUID’d scheme, but we’ll make it active)
 for /f "tokens=2 delims=:" %%G in ('powercfg /import "%POWFILE%" ^| findstr /i "GUID"') do set "NEWGUID=%%G"
 if not defined NEWGUID (
     echo %RED%ERROR: Import failed.%RESET%
@@ -250,16 +273,10 @@ if not defined NEWGUID (
     exit /b
 )
 set "NEWGUID=%NEWGUID: =%"
-rem — set the newly imported scheme active
 powercfg /setactive %NEWGUID%
 echo %GREEN%Restored power settings from backup file.%RESET%
 timeout /t 2 >nul
 goto MAIN_LOOP
-
-
-
-
-
 
 :INFO_BACKUP
 type "%BACKUP_FILE%" || echo %GREEN%No backup file found%RESET%

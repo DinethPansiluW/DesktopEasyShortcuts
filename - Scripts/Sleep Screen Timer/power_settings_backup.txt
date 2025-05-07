@@ -1,7 +1,7 @@
 Mode=AC 
 Screen=10 min 
 Sleep=15 min 
-Hibernate=60 min 
+Hibernate=Never 
  
 Mode=BATTERY 
 Screen=5 min 
