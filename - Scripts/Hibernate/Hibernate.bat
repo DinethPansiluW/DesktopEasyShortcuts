@@ -1,5 +1,5 @@
 @echo off
-title Restart Countdown
+title Hibernate Countdown
 color 0A
 setlocal enabledelayedexpansion
 
@@ -28,4 +28,4 @@ for /l %%i in (!Time!,-1,1) do (
 )
 
 :: Start shutdown
-start "" "Restart.vbs"
+start "" "Hibernate.vbs"

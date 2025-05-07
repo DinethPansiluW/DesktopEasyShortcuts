@@ -1,5 +1,5 @@
 @echo off
-title Sleep Countdown
+title Shutdown Countdown
 color 0A
 setlocal enabledelayedexpansion
 
