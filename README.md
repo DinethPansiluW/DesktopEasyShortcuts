@@ -6,6 +6,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - 🔴 **Shutdown**: Shut down the computer in 5 seconds with countdown.
 - 🔁 **Restart**: Restart the computer in 5 seconds with countdown.
 - 🌙 **Sleep**: Put the computer to sleep in 5 seconds with countdown.
+- 🌌 **Hibernate**: Hibernate the computer in 5 seconds with countdown.
 - 📶 **Wi-Fi On/Off**: Toggle Wi-Fi status. 👉 *Read below for important settings.*
 - 🖤 **Black Screen**: Instantly turn off the screen without sleep or shutdown or hibernate.
 - ⏱️ **Sleep & Screen Timer**: Automatically put the device to sleep, hibernate and turn off the screen after a set time.
@@ -22,7 +23,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 ## 🛠️ Usage
 
-### 🔴🔁🌙 Basic Power Functions (Shutdown / Restart / Sleep)
+### 🔴🔁🌙🌌 Basic Power Functions (Shutdown / Restart / Sleep / Hibernate)
 - Double-click the shortcut to run.
 - To **change the delay time**:  
   - Right-click the script or shortcut and choose **Edit** (opens in Notepad).  
