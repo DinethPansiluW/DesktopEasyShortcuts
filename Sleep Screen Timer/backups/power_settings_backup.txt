@@ -1,0 +1,9 @@
+Mode=AC 
+Screen=5 min 
+Sleep=10 min 
+Hibernate=60 min 
+ 
+Mode=BATTERY 
+Screen=2 min 
+Sleep=5 min 
+Hibernate=15 min 

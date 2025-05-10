@@ -1,0 +1,6 @@
+balanced_scr=10
+balanced_slp=15
+balanced_hib=60
+battery_scr=5
+battery_slp=10
+battery_hib=30
