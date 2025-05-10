@@ -17,9 +17,12 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - ⚙️ **Graphic Settings**: Open advanced graphics settings panel.
 
 ## 📁 Installation
-1. Download all scripts and icons.
-2. Copy the script folder to the `D:` drive (e.g., `D:\-Scripts`).
-3. Copy the shortcuts (with icons) from the `Shortcuts` folder to your desktop.
+
+1. ⬇Download all the files and folders from the repository.
+2. Create a folder on the `D:` drive named **`-Scripts`** (**⚠️ Important** ).
+3. Copy all the downloaded files and folders into the `D:\-Scripts` directory.
+4. Open the `Shortcuts` folder (`D:\-Scripts\Shortcuts`) and copy its contents (shortcuts with icons) to your desktop.
+
 
 ## 🛠️ Usage
 
