@@ -12,7 +12,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - ⏱️ **Sleep & Screen Timer**: Automatically put the device to sleep, hibernate and turn off the screen after a set time.
 - ♻️ **Restore Time**: Restore default screen and sleep settings.
 - 🟢 **Schedule Shutdown**: Schedule a shutdown at a specific time.
-- 📴 **Wi-Fi OFF 7AM**: Automatically turn off Wi-Fi at 7 AM.
+- 📴 **Wi-Fi OFF Schedule**: Automatically turn off Wi-Fi at specific time.
 - 🖥️➡️📺 **Display Switch**: Toggle between “PC screen only” and “Extend” modes.
 - ⚙️ **Graphic Settings**: Open advanced graphics settings panel.
 
@@ -34,20 +34,15 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 > ⚠️ **Important: Wi-Fi Control Settings**
 
-### 📶 Wi-Fi Control
+### 📶 Wi-Fi On/OFF
 - **To connect to your Wi-Fi**:
   - Right-click the **Wi-Fi ON OFF** icon → choose **Open file location**.
   - Right-click the `WiFi ON` shortcut → **Properties**.
   - In the Target field, replace `"Hemis WiFi"` with your actual Wi-Fi name.
 
-- **To change the scheduled Wi-Fi off time**:
-  - Right-click the **Wi-Fi OFF 7AM** icon → choose **Open file location**.
-  - Open `add_wifi_disable_task.bat` with Notepad.
-  - Find the time setting `07:00` and replace it with your preferred time in 24-hour format (e.g., `23:30`).
 
-### 🖥️ Display / ⚙️ Graphics / ⏱️ Timers
-- Use shortcuts to quickly switch display modes, set screen timers, or access graphics settings.
-- You can also edit the scripts to change time durations and behavior.
+### ⚙️ Others
+- Use shortcuts to quick launch.
 
 ## ⚠️ Notes
 - Some scripts may require administrator privileges.
