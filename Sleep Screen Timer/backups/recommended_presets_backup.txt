@@ -1,6 +1,9 @@
-balanced_scr=10
-balanced_slp=15
-balanced_hib=60
-battery_scr=5
-battery_slp=10
-battery_hib=30
+AC Screen OFF      =10
+AC Sleep           =15
+AC Hibernate       =60
+AC HD OFF          =120
+
+Battery Screen OFF =5
+Battery Sleep      =10
+Battery Hibernate  =30
+Battery HD OFF     =60

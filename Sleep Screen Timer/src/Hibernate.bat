@@ -1,6 +1,15 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Set ANSI color escape codes
+set "GREEN=[1;32m"
+set "GREENU=[4;32m"
+set "RED=[31m"
+set "ORANGE=[33m"
+set "RESET=[0m"
+set "PINK=[1;35m"
+set "SKYBLUE=[96m"
+
 :: Enable ANSI escape codes
 reg query HKCU\Console /v VirtualTerminalLevel 2>nul | find "0x1" >nul || (
     reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
@@ -45,18 +54,18 @@ if defined DC_SECS if %DC_SECS% gtr 0 set "TIMEOUT_STATUS=Enabled" & set "TIMEOU
 
 :: Display
 echo %ESC%[1mCurrent Status:%ESC%[0m
-echo [Hibernate] %ESC%[%HIBER_COLOR%m%HIBER_STATUS%%ESC%[0m
-echo [Timeouts]  %ESC%[%TIMEOUT_COLOR%m%TIMEOUT_STATUS%%ESC%[0m
+echo Hibernate %ESC%[%HIBER_COLOR%m%HIBER_STATUS%%ESC%[0m
+echo Timeouts  %ESC%[%TIMEOUT_COLOR%m%TIMEOUT_STATUS%%ESC%[0m
 if "%TIMEOUT_STATUS%"=="Enabled" (
     if %ACMIN%==0 (
-        echo [AC Power]  Never
+        echo AC Power  Never
     ) else (
-        echo [AC Power]  %ACMIN% Minutes
+        echo AC Power  %ACMIN% Minutes
     )
     if %DCMIN%==0 (
-        echo [Battery]   Never
+        echo Battery   Never
     ) else (
-        echo [Battery]   %DCMIN% Minutes
+        echo Battery   %DCMIN% Minutes
     )
 )
 echo %ESC%[1;36m========================================%ESC%[0m
@@ -64,14 +73,14 @@ echo.
 
 :: Menu with opposite-action labels
 if "%HIBER_STATUS%"=="Enabled" (
-    set "HIBER_ACTION=Disable Hibernate"
+    set "HIBER_ACTION=%RED%Disable %RESET%Hibernate"
 ) else (
-    set "HIBER_ACTION=Enable Hibernate"
+    set "HIBER_ACTION=%GREEN%Enable %RESET%Hibernate"
 )
 if "%TIMEOUT_STATUS%"=="Enabled" (
-    set "TIMEOUT_ACTION=Disable Timeouts"
+    set "TIMEOUT_ACTION=%RED%Disable %RESET%Timeouts"
 ) else (
-    set "TIMEOUT_ACTION=Enable Timeouts"
+    set "TIMEOUT_ACTION=%GREEN%Enable %RESET%Timeouts"
 )
 
 echo 1. %HIBER_ACTION%
@@ -81,14 +90,14 @@ if "%TIMEOUT_STATUS%"=="Enabled" (
     echo 4. Configure Battery Timeout
 )
 echo.
-echo 0. Exit to Previous Menu
+echo 0. %ORANGE%Exit to Previous Menu
 echo.
 
 :: Use set /p instead of choice
 if "%TIMEOUT_STATUS%"=="Enabled" (
-    set /p "CHOICE=Select option (1-4): "
+    set /p "CHOICE=%RESET%Select option (1-4): %PINK%"
 ) else (
-    set /p "CHOICE=Select option (1-2): "
+    set /p "CHOICE=%RESET%Select option (1-2): %PINK%"
 )
 
 :: Branching

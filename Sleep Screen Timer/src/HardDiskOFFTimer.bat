@@ -6,11 +6,14 @@ rem  HARD DISK TIMEOUT CONTROL PANEL (Live Status Fix)
 rem =====================================================
 
 :: Define color codes
-set "GREEN=[32m"
+:: Set ANSI color escape codes
+set "GREEN=[1;32m"
+set "GREENU=[4;32m"
 set "RED=[31m"
 set "ORANGE=[33m"
 set "RESET=[0m"
 set "PINK=[1;35m"
+set "SKYBLUE=[96m
 
 :show_panel
 cls
@@ -39,17 +42,28 @@ rem 4) Convert to minutes
 set /a dc_minutes = dc_seconds / 60
 set /a ac_minutes = ac_seconds / 60
 
-rem 5) Show results
-echo %ORANGE%Plugged in%RESET%  - !ac_minutes! minute
-echo %ORANGE%On battery%RESET%  - !dc_minutes! minute
+rem 5) Show results with 0 = Never in RED
+if !ac_minutes! EQU 0 (
+  echo %ORANGE%Plugged in%RESET%  - %RED%Never%RESET%
+) else (
+  echo %ORANGE%Plugged in%RESET%  - !ac_minutes! minutes
+)
+
+if !dc_minutes! EQU 0 (
+  echo %ORANGE%On battery%RESET%  - %RED%Never%RESET%
+) else (
+  echo %ORANGE%On battery%RESET%  - !dc_minutes! minutes
+)
 
 echo %PINK%========================================%RESET%
 echo.
 echo %GREEN%1.%RESET% Set AC Timeout
 echo %GREEN%2.%RESET% Set Battery Timeout
-echo %GREEN%0.%RESET% Exit to Previous Menu
+echo %GREEN%3.%RESET% Set All to Never
 echo.
-set /p choice="Select option (1-2): "
+echo %GREEN%0.%ORANGE% Exit to Previous Menu %RESET%
+echo.
+set /p choice="Select option (0-3): %PINK%"
 
 if "%choice%"=="0" (
     exit /b
@@ -59,49 +73,34 @@ if "%choice%"=="0" (
 ) else if "%choice%"=="2" (
     set "mode=DC"
     goto set_timeout
+) else if "%choice%"=="3" (
+    goto set_all_never
 ) else (
     echo.
-    echo %RED%Invalid choice "%choice%". Please enter 1 or 2.%RESET%
+    echo %RED%Invalid choice "%choice%". Please enter 0, 1, 2, or 3.%RESET%
     pause
     goto show_panel
 )
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:get_timeout  modeVar  outVar
-  set "%~2="
-  if /I "%~1"=="AC" (
-    for /f "tokens=* delims=" %%L in ('powercfg /getacvalueindex SCHEME_CURRENT SUB_DISK DISKIDLE') do set "line=%%L"
-  ) else (
-    for /f "tokens=* delims=" %%L in ('powercfg /getdcvalueindex SCHEME_CURRENT SUB_DISK DISKIDLE') do set "line=%%L"
-  )
-  for /f "tokens=* delims=" %%D in ("!line!") do (
-    for /f "delims=0123456789" %%X in ("%%D") do (
-      set "temp=%%D"
-      setlocal DisableDelayedExpansion
-      for /f "tokens=* delims=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ: .=" %%N in ("!temp!") do endlocal & set "%~2=%%N"
-    )
-  )
-  goto :eof
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:format_display  secondsVar  displayVar
-  setlocal EnableDelayedExpansion
-  set "s=!%~1!"
-  if "!s!"=="" set "s=0"
-  set /a m = s / 60
-  if !m! equ 0 (
-    endlocal & set "%~2=Never"
-  ) else (
-    endlocal & set "%~2=!m! min"
-  )
-  goto :eof
+:set_all_never
+echo.
+echo %ORANGE%Setting both AC and DC disk timeout to Never...%RESET%
+powercfg /setacvalueindex SCHEME_CURRENT SUB_DISK DISKIDLE 0
+powercfg /setdcvalueindex SCHEME_CURRENT SUB_DISK DISKIDLE 0
+powercfg /setactive SCHEME_CURRENT
+echo.
+echo %GREEN%Both AC and DC disk timeouts set to Never.%RESET%
+echo.
+pause
+goto show_panel
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :set_timeout
 echo.
 set /p newMin="Enter new timeout in minutes (0 for Never): "
 
-rem Validate numeric input
+rem Validate numeric input (only digits allowed)
 for /f "delims=0123456789" %%X in ("!newMin!") do (
   echo.
   echo %RED%Invalid number: %%X%RESET%
