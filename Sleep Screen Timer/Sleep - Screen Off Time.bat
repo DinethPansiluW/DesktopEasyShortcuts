@@ -8,6 +8,17 @@ set "ORANGE=[33m"
 set "RESET=[0m"
 set "PINK=[1;35m"
 
+:: Check for admin rights
+>nul 2>&1 net session
+if %errorLevel% neq 0 (
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    echo UAC.ShellExecute "cmd.exe", "/c ""%~f0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit /b
+)
+
+
 :: Admin check
 net session >nul 2>&1
 if %errorLevel% neq 0 (
@@ -15,6 +26,7 @@ if %errorLevel% neq 0 (
     pause
     exit /b 1
 )
+
 
 :: Enable ANSI escape codes
 reg query HKCU\Console /v VirtualTerminalLevel 2>nul | find "0x1" >nul || (
@@ -121,11 +133,12 @@ if "%choice%"=="6" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC
 if "%choice%"=="7" (call :BACKUP_TIMES & call :BACKUP_TIMES_POW & goto MAIN_LOOP)
 if "%choice%"=="8" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
 if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
-if /i "%choice%"=="a" call src\Hybernate.bat
-if /i "%choice%"=="b" call src\HybridSleep.bat
-if /i "%choice%"=="c" call src\PowerPlanManager.bat
-if /i "%choice%"=="d" call src\HardDiskOFFTimer.bat
-if /i "%choice%"=="e" call src\LidClosePowerButtonManager.bat
+if /i "%choice%"=="a" call "%~dp0src\Hibernate.bat"
+if /i "%choice%"=="b" call "%~dp0src\HybridSleep.bat"
+if /i "%choice%"=="c" call "%~dp0src\PowerPlanManager.bat"
+if /i "%choice%"=="d" call "%~dp0src\HardDiskOFFTimer.bat"
+if /i "%choice%"=="e" call "%~dp0src\LidClosePowerButtonManager.bat"
+
 if "%choice%"=="100" call :CHANGE_PRESETS & goto MAIN_LOOP
 
 goto MAIN_LOOP

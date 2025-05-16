@@ -9,7 +9,7 @@ if %errorLevel% neq 0 (
     exit /b 1
 )
 
-set "BACKUP_FILE=%~dp0backuos\power_settings_backup.txt"
+set "BACKUP_FILE=%~dp0backups\power_settings_backup.txt"
 
 type "%BACKUP_FILE%" || echo %GREEN%No backup file found%RESET%
 set "POWFILE=%~dp0backups\power_backup.pow"
