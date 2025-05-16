@@ -105,20 +105,19 @@ if /i "%mode%"=="AC" (
 )
 
 echo 2. Never (Screen OFF, Sleep, Hibernate)
-echo 3. Change Screen OFF time only
-echo 4. Change Sleep time only
-echo 5. Custom Settings All
-echo 6. Switch Mode (AC/Battery)
+echo 3. Switch Mode (AC/Battery)
+echo 100. Change Recommended Times (Current Mode)
 echo.
-echo %GREEN%7. Backup Times
-echo 8. Restore Settings from Backup
-echo 9. Info Backup
-echo %PINK%A. Go to Hibernate Manager
-echo B. Go to Hybrid Sleep Manager
-echo C. Power Plan Manager
-echo D. Hard Disk OFF time Manager
-echo E. Lid Close, Power Button ^& Sleep Button Press Manager
-echo %RESET%100. Change Recommended Times (Current Mode)
+echo 4. Custom Settings
+echo.
+echo %GREEN%5. Backup Times
+echo 6. Restore Settings from Backup
+echo 7. Info Backup
+echo %PINK%a. Power Plan Manager
+echo b. Go to Hybrid Sleep Manager
+echo c. Hard Disk OFF time Manager
+echo d. Lid Close, Power Button ^& Sleep Button Press Manager
+
 
 echo.
 set /p "choice=%RESET%Enter choice: %ORANGE%"
@@ -126,20 +125,23 @@ set /p "choice=%RESET%Enter choice: %ORANGE%"
 :: Handle menu
 if "%choice%"=="1" call :APPLY_RECOMMENDED
 if "%choice%"=="2" set "scr=0" & set "slp=0" & set "hib=0" & goto APPLY
-if "%choice%"=="3" call :CHANGE_SCREEN_ONLY
-if "%choice%"=="4" call :CHANGE_SLEEP_ONLY
-if "%choice%"=="5" call :CUSTOM_SETTINGS & goto APPLY
-if "%choice%"=="6" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
-if "%choice%"=="7" (call :BACKUP_TIMES & call :BACKUP_TIMES_POW & goto MAIN_LOOP)
-if "%choice%"=="8" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
-if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
-if /i "%choice%"=="a" call "%~dp0src\Hibernate.bat"
-if /i "%choice%"=="b" call "%~dp0src\HybridSleep.bat"
-if /i "%choice%"=="c" call "%~dp0src\PowerPlanManager.bat"
-if /i "%choice%"=="d" call "%~dp0src\HardDiskOFFTimer.bat"
-if /i "%choice%"=="e" call "%~dp0src\LidClosePowerButtonManager.bat"
-
+if "%choice%"=="3" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
 if "%choice%"=="100" call :CHANGE_PRESETS & goto MAIN_LOOP
+
+if /i "%choice%"=="4" (
+    call "%~dp0src\PowerOptions.bat"
+    call "%~dp0src\Hibernate.bat"
+)
+
+
+if "%choice%"=="5" (call :BACKUP_TIMES & call :BACKUP_TIMES_POW & goto MAIN_LOOP)
+if "%choice%"=="6" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
+if "%choice%"=="7" call :INFO_BACKUP & pause & goto MAIN_LOOP
+
+if /i "%choice%"=="a" call "%~dp0src\PowerPlanManager.bat"
+if /i "%choice%"=="b" call "%~dp0src\HybridSleep.bat"
+if /i "%choice%"=="c" call "%~dp0src\HardDiskOFFTimer.bat"
+if /i "%choice%"=="d" call "%~dp0src\LidClosePowerButtonManager.bat"
 
 goto MAIN_LOOP
 
