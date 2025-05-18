@@ -4,15 +4,18 @@ setlocal enabledelayedexpansion
 REM — Ensure a consistent console size
 mode con: cols=120 lines=50
 
-
 :: Check for admin rights
->nul 2>&1 net session
-if %errorLevel% neq 0 (
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    echo UAC.ShellExecute "cmd.exe", "/c ""%~f0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    :: Create a temporary VBScript to relaunch this script with admin rights
+    >"%temp%\getadmin.vbs" (
+        echo Set UAC = CreateObject^("Shell.Application"^)
+        echo UAC.ShellExecute "%~f0", "", "", "runas", 1
+    )
+    :: Run the VBScript silently and exit the current window
     "%temp%\getadmin.vbs"
     del "%temp%\getadmin.vbs"
-    exit /b
+    exit
 )
 
 :: Admin check
@@ -171,18 +174,17 @@ if "%choice%"=="2" (
 )
 
 if "%choice%"=="3" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
-if "%choice%"=="100" call :CHANGE_PRESETS & goto MAIN_LOOP
 
 if "%choice%"=="4" call "%~dp0src\PowerOptions.bat"
 if "%choice%"=="5" call "%~dp0src\Hibernate.bat"
 if "%choice%"=="6" call "%~dp0src\HardDiskOFFTimer.bat"
 
 if "%choice%"=="7" (
-    call :CONFIRM "Backup current settings?" :BACKUP_TIMES
+    call :CONFIRM "Are you sure Backup current settings?" :BACKUP_TIMES
     goto MAIN_LOOP
 )
 if "%choice%"=="8" (
-    call :CONFIRM "Restore settings from backup?" :RESTORE_FROM_BACKUP
+    call :CONFIRM "Are you sure Restore settings from backup?" :RESTORE_FROM_BACKUP
     goto MAIN_LOOP
 )
 if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
@@ -190,6 +192,11 @@ if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
 if /i "%choice%"=="a" call "%~dp0src\PowerPlanManager.bat"
 if /i "%choice%"=="b" call "%~dp0src\HybridSleep.bat"
 if /i "%choice%"=="c" call "%~dp0src\LidClosePowerButtonManager.bat"
+
+if "%choice%"=="100" (
+    call :CONFIRM "Are you sure Change Recommended Times?" :CHANGE_PRESETS
+    goto MAIN_LOOP
+)
 
 goto MAIN_LOOP
 

@@ -114,6 +114,9 @@ REM Rest of your script or exit
 exit /b
 
 :RESTORE_FROM_BACKUP
+
+schtasks /Delete /TN "RestoreTimesAtStartup" /F
+
 REM --- Paths
 set "BACKUP_FILE=%~dp0power_settings_backup.txt"
 set "TEMPENV=%temp%\restore_env.cmd"
