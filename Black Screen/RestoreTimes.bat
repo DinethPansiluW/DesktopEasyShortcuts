@@ -108,9 +108,9 @@ powercfg -change -standby-timeout-dc %dc_slp%
 powercfg -change -hibernate-timeout-dc %dc_hib%
 powercfg -change -disk-timeout-dc %dc_hd%
 
-echo Restored all timeouts from text backup.
+
+start "" /min cmd /c "RemoveTaskScheduler.bat"
+
 timeout /t 2 >nul
 exit /b
 
-
-pause
