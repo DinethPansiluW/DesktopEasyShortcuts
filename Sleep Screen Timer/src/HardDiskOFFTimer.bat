@@ -59,7 +59,7 @@ echo %PINK%========================================%RESET%
 echo.
 echo %GREEN%1.%RESET% Set AC Timeout
 echo %GREEN%2.%RESET% Set Battery Timeout
-echo %GREEN%3.%RESET% Set All to Never
+echo %GREEN%3.%RESET% Set All to Never %SKYBLUE%(Recommend for SSD users and PCs)%RESET%
 echo.
 echo %GREEN%0.%ORANGE% Exit to Previous Menu %RESET%
 echo.
