@@ -1,6 +1,16 @@
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
 
+:: Check for admin rights
+>nul 2>&1 net session
+if %errorLevel% neq 0 (
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    echo UAC.ShellExecute "cmd.exe", "/c ""%~f0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit /b
+)
+
 REM === Color definitions ===
 set "GREEN=[92m"
 set "RED=[91m"
