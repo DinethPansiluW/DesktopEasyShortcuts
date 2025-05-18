@@ -64,14 +64,14 @@ set "BACKUP_FILE=%~dp0backups\power_settings_backup.txt"
 set "RECOMMEND_BACKUP_FILE=%~dp0backups\recommended_presets_backup.txt"
 
 :: Initialize recommended presets
-set "balanced_scr=10"
+set "balanced_scr=5"
 set "balanced_slp=15"
 set "balanced_hib=60"
+set "balanced_hd=5"
 set "battery_scr=5"
 set "battery_slp=10"
 set "battery_hib=30"
-set "balanced_hd=120"
-set "battery_hd=60"
+set "battery_hd=5"
 
 
 :: Load recommended presets from backup if exists
@@ -105,30 +105,30 @@ for /l %%i in (1,1,!spaces!) do set "spacer=!spacer! "
 echo %SKYBLUE%!spacer!=========== SUPER POWER SETTINGS MANAGER ===========%RESET%
 
 echo.
-echo !spacer!                    %RED%Mode: %ORANGE%!mode!%RESET%
+echo !spacer!                     %RED%Mode: %ORANGE%!mode!%RESET%
 echo.
-echo !spacer!          .%GREENU%AC%RESET%.            ^|           .%GREENU%BATTERY%RESET%.
+echo !spacer!          .%GREENU%AC%RESET%.          ^|           .%GREENU%BATTERY%RESET%.
 
 ::Screen OFF Times Display
 echo !spacer!Screen OFF - %ORANGE%!ac_scr_display!%RESET%      ^|     Screen OFF - %ORANGE%!battery_scr_display!%RESET%
 
 ::Sleep Times Display
 if "!sleepAvailable!"=="1" (
-    echo !spacer!Sleep      - %ORANGE%!ac_slp_display!%RESET%      ^|     Sleep      - %ORANGE%!battery_slp_display!%RESET%
+    echo !spacer!Sleep      - %ORANGE%!ac_slp_display!%RESET%     ^|     Sleep      - %ORANGE%!battery_slp_display!%RESET%
 ) else (
     echo !spacer!%RED%Plz Update Graphic Driver%RESET%
 )
 echo.
 
 ::Hibernate Times Display
-if exist %SystemDrive%\hiberfil.sys (
-    echo !spacer!Hibernate  - %ORANGE%!ac_hib_display!%RESET%      ^|     Hibernate  - %ORANGE%!battery_hib_display!%RESET%
+if exist %SystemDrive%\hiberfil.sys ( 
+    echo !spacer!Hibernate  - %ORANGE%!ac_hib_display!%RESET%     ^|     Hibernate  - %ORANGE%!battery_hib_display!%RESET%
 ) else (
     echo !spacer!Hibernate is %RED%Disabled %RESET%^(Choose Option 5 for %GREEN%Enable%RESET%^)
 )
 
 ::Hard Disk OFF Times Display
-echo !spacer!Hard Disk  - %ORANGE%!ac_hd_display!%RESET%     ^|     Hard Disk  - %ORANGE%!battery_hd_display!%RESET%
+echo !spacer!Hard Disk  - %ORANGE%!ac_hd_display!%RESET%      ^|     Hard Disk  - %ORANGE%!battery_hd_display!%RESET%
 
 echo.
 echo !spacer!%SKYBLUE%===================================================%RESET%
