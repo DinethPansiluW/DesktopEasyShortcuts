@@ -84,6 +84,12 @@ if exist "%RECOMMEND_BACKUP_FILE%" (
 
 )
 
+:: Check sleep state availability
+set "sleepAvailable=0"
+for /f "delims=" %%A in ('powercfg -query ^| findstr /i "Sleep after"') do (
+    set "sleepAvailable=1"
+)
+
 :MAIN_LOOP
 call :LOAD_SETTINGS
 cls
@@ -98,12 +104,27 @@ echo %SKYBLUE%!spacer!=========== SUPER POWER SETTINGS MANAGER ===========%RESET
 echo.
 echo !spacer!                    %RED%Mode: %ORANGE%!mode!%RESET%
 echo.
-echo !spacer!          %GREENU%AC%RESET%             ^|           %GREENU%BATTERY%RESET%
+echo !spacer!          .%GREENU%AC%RESET%.             ^|           .%GREENU%BATTERY%RESET%.
 
+::Screen OFF Times Display
 echo !spacer!Screen OFF - %ORANGE%!ac_scr_display!%RESET%      ^|     Screen OFF - %ORANGE%!battery_scr_display!%RESET%
-echo !spacer!Sleep      - %ORANGE%!ac_slp_display!%RESET%      ^|     Sleep      - %ORANGE%!battery_slp_display!%RESET%
+
+::Sleep Times Display
+if "!sleepAvailable!"=="1" (
+    echo !spacer!Sleep      - %ORANGE%!ac_slp_display!%RESET%      ^|     Sleep      - %ORANGE%!battery_slp_display!%RESET%
+) else (
+    echo !spacer!%RED%Plz Update Graphic Driver%RESET%
+)
 echo.
-echo !spacer!Hibernate  - %ORANGE%!ac_hib_display!%RESET%      ^|     Hibernate  - %ORANGE%!battery_hib_display!%RESET%
+
+::Hibernate Times Display
+if exist %SystemDrive%\hiberfil.sys (
+    echo !spacer!Hibernate  - %ORANGE%!ac_hib_display!%RESET%      ^|     Hibernate  - %ORANGE%!battery_hib_display!%RESET%
+) else (
+    echo !spacer!Hibernate is %RED%Disabled %RESET%^(Choose Option 5 for %GREEN%Enable%RESET%^)
+)
+
+::Hard Disk OFF Times Display
 echo !spacer!Hard Disk  - %ORANGE%!ac_hd_display!%RESET%     ^|     Hard Disk  - %ORANGE%!battery_hd_display!%RESET%
 
 echo.
@@ -119,9 +140,9 @@ if /i "%mode%"=="AC" (
 echo 2. Never ( Screen OFF, Sleep, Hibernate, Hard Disk OFF )
 echo 3. Switch Mode ( %ORANGE%AC/Battery%RESET% )
 echo.%SKYBLUE%
-echo 4. Custom Settings ( Screen OFF, Sleep )
-echo 5. Custom Settings ( Hibernate )
-echo 6. Custom Settings ( Hard Disk OFF ) 
+echo 4. Custom Settings All ( Screen OFF, Sleep )
+echo 5. Custom Settings All ( Hibernate )
+echo 6. Custom Settings All ( Hard Disk OFF ) 
 echo. %GREEN%
 echo 7. Backup Times
 echo 8. Restore Settings from Backup
