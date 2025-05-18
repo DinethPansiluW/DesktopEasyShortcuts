@@ -104,7 +104,7 @@ echo %SKYBLUE%!spacer!=========== SUPER POWER SETTINGS MANAGER ===========%RESET
 echo.
 echo !spacer!                    %RED%Mode: %ORANGE%!mode!%RESET%
 echo.
-echo !spacer!          .%GREENU%AC%RESET%.             ^|           .%GREENU%BATTERY%RESET%.
+echo !spacer!          .%GREENU%AC%RESET%.            ^|           .%GREENU%BATTERY%RESET%.
 
 ::Screen OFF Times Display
 echo !spacer!Screen OFF - %ORANGE%!ac_scr_display!%RESET%      ^|     Screen OFF - %ORANGE%!battery_scr_display!%RESET%
@@ -160,7 +160,16 @@ set /p "choice=%RED%Enter choice%RESET%: %ORANGE%"
 
 :: Handle menu
 if "%choice%"=="1" call :APPLY_RECOMMENDED
-if "%choice%"=="2" set "scr=0" & set "slp=0" & set "hib=0" & set "hd=0" & goto APPLY
+
+if "%choice%"=="2" (
+    set "scr=0"
+    set "slp=0"
+    set "hib=0"
+    set "hd=0"
+    echo %SKYBLUE%All set to Never
+    goto APPLY
+)
+
 if "%choice%"=="3" (if /i "%mode%"=="AC" (set "mode=BATTERY") else (set "mode=AC")) & goto MAIN_LOOP
 if "%choice%"=="100" call :CHANGE_PRESETS & goto MAIN_LOOP
 
@@ -168,8 +177,14 @@ if "%choice%"=="4" call "%~dp0src\PowerOptions.bat"
 if "%choice%"=="5" call "%~dp0src\Hibernate.bat"
 if "%choice%"=="6" call "%~dp0src\HardDiskOFFTimer.bat"
 
-if "%choice%"=="7" (call :BACKUP_TIMES & call :BACKUP_TIMES_POW & goto MAIN_LOOP)
-if "%choice%"=="8" call :RESTORE_FROM_BACKUP & goto MAIN_LOOP
+if "%choice%"=="7" (
+    call :CONFIRM "Backup current settings?" :BACKUP_TIMES
+    goto MAIN_LOOP
+)
+if "%choice%"=="8" (
+    call :CONFIRM "Restore settings from backup?" :RESTORE_FROM_BACKUP
+    goto MAIN_LOOP
+)
 if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
 
 if /i "%choice%"=="a" call "%~dp0src\PowerPlanManager.bat"
@@ -184,7 +199,7 @@ if /i "%mode%"=="AC" (
 ) else (
     set "scr=!battery_scr!" & set "slp=!battery_slp!" & set "hib=!battery_hib!" & set "hd=!battery_hd!"
 )
-
+echo %SKYBLUE%Applied Recommended Settings
 goto APPLY
 
 :APPLY
@@ -298,36 +313,86 @@ echo %GREEN%Current settings backed up to %BACKUP_FILE% %RESET%
 timeout /t 2 >nul
 exit /b
 
-:BACKUP_TIMES_POW
-set "POWFILE=%~dp0backups\power_backup.pow"
-powercfg /export "%POWFILE%" SCHEME_CURRENT
-if %errorlevel% neq 0 (
-    echo %RED%ERROR: Failed to export power scheme.%RESET%
-) else (
-    echo %GREEN%Power scheme exported to %POWFILE% %RESET%
-)
-timeout /t 2 >nul
-exit /b
 
 :RESTORE_FROM_BACKUP
-set "POWFILE=%~dp0backups\power_backup.pow"
-if not exist "%POWFILE%" (
-    echo %RED%ERROR: No backup .pow file found.%RESET%
+REM --- Paths
+set "BACKUP_FILE=%~dp0backups\power_settings_backup.txt"
+set "TEMPENV=%temp%\restore_env.cmd"
+
+REM --- Check backup exists
+if not exist "%BACKUP_FILE%" (
+    echo ERROR: No backup file at "%BACKUP_FILE%"
     timeout /t 2 >nul
     exit /b
 )
-for /f "tokens=2 delims=:" %%G in ('powercfg /import "%POWFILE%" ^| findstr /i "GUID"') do set "NEWGUID=%%G"
-if not defined NEWGUID (
-    echo %RED%ERROR: Import failed.%RESET%
-    timeout /t 2 >nul
-    exit /b
+
+REM --- Create temp env file
+> "%TEMPENV%" echo @echo off
+set cnt=0
+
+REM --- Read and split into AC (first 4) and DC (next 4)
+for /f "tokens=1,2 delims==" %%A in ('findstr /i /b "Screen= Sleep= Hibernate= HardDisk=" "%BACKUP_FILE%"') do (
+    set /a cnt+=1
+    set "raw=%%B"
+    REM normalize Never -> 0, strip " min"
+    if /i "!raw!"=="Never" (
+        set "val=0"
+    ) else (
+        for /f "tokens=1 delims= " %%X in ("!raw!") do set "val=%%X"
+    )
+    REM decide AC vs DC
+    if !cnt! leq 4 (
+        echo set ac_%%A=!val!>> "%TEMPENV%"
+    ) else (
+        echo set dc_%%A=!val!>> "%TEMPENV%"
+    )
 )
-set "NEWGUID=%NEWGUID: =%"
-powercfg /setactive %NEWGUID%
-echo %GREEN%Restored power settings from backup file.%RESET%
+
+REM --- Load variables
+call "%TEMPENV%"
+del "%TEMPENV%"
+endlocal & (
+    set "ac_scr=%ac_Screen%"
+    set "ac_slp=%ac_Sleep%"
+    set "ac_hib=%ac_Hibernate%"
+    set "ac_hd=%ac_HardDisk%"
+    set "dc_scr=%dc_Screen%"
+    set "dc_slp=%dc_Sleep%"
+    set "dc_hib=%dc_Hibernate%"
+    set "dc_hd=%dc_HardDisk%"
+)
+
+REM --- Apply settings AC then DC
+powercfg -change -monitor-timeout-ac %ac_scr%
+powercfg -change -standby-timeout-ac %ac_slp%
+powercfg -change -hibernate-timeout-ac %ac_hib%
+powercfg -change -disk-timeout-ac %ac_hd%
+
+powercfg -change -monitor-timeout-dc %dc_scr%
+powercfg -change -standby-timeout-dc %dc_slp%
+powercfg -change -hibernate-timeout-dc %dc_hib%
+powercfg -change -disk-timeout-dc %dc_hd%
+
+echo Restored all timeouts from text backup.
 timeout /t 2 >nul
-goto MAIN_LOOP
+exit /b
 
 :INFO_BACKUP
 type "%BACKUP_FILE%" || echo %GREEN%No backup file found%RESET%
 goto :eof
+
+:CONFIRM
+REM %1 = confirmation message
+REM %2 = label to call if confirmed
+
+setlocal enabledelayedexpansion
+set "msg=%~1"
+set /p "ans=%msg% (Y/N)? "
+if /i "!ans!"=="Y" (
+    endlocal & call %2
+) else (
+    endlocal
+    echo Operation cancelled.
+    timeout /t 2 >nul
+)
+exit /b
