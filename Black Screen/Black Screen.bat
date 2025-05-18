@@ -14,15 +14,15 @@ set "GREENU=[4;32m"
 set "RED=[31m"
 set "ORANGE=[33m"
 set "RESET=[0m"
-set "PINK=[3;35m"
+set "PINK=[1;35m"
 set "SKYBLUE=[96m"
 
 echo.
 echo %SKYBLUE%Do not press any key or move the mouse until the screen turns off...%RESET%
 echo.
-echo %GREEN%Sleep, Hibernate, Hard Disk OFF timeouts set to Never.%RESET%
+echo %GREEN%Sleep, Hibernate, Hard Disk OFF timeouts set to %PINK%Never%RESET%.
 echo.
-timeout /t 4 >nul
+timeout /t 3 >nul
 
 :: GUIDs for power settings
 set "GUID_HIBERNATE=9d7815a6-7ee4-497e-8888-515a05f02364"
@@ -103,7 +103,7 @@ powershell -NoProfile -Command ^
   "Add-Type -MemberDefinition '[DllImport(\"user32.dll\")] public static extern int SendMessage(int hWnd,int hMsg,int wParam,int lParam);' -Name 'User32' -Namespace 'WinAPI';" ^
   "[WinAPI.User32]::SendMessage(0xFFFF, 0x0112, 0xF170, 2)"
 
-
+echo.
 echo %RED%Press Any Key to Restore the Times%RESET%
 pause >nul
 
@@ -114,8 +114,6 @@ REM Rest of your script or exit
 exit /b
 
 :RESTORE_FROM_BACKUP
-
-schtasks /Delete /TN "RestoreTimesAtStartup" /F
 
 REM --- Paths
 set "BACKUP_FILE=%~dp0power_settings_backup.txt"
@@ -175,7 +173,10 @@ powercfg -change -standby-timeout-dc %dc_slp%
 powercfg -change -hibernate-timeout-dc %dc_hib%
 powercfg -change -disk-timeout-dc %dc_hd%
 
-echo Restored all timeouts from text backup.
+echo %ORANGE%Restored all times.
+
+start "" /min cmd /c "RemoveTaskScheduler.bat"
+
 timeout /t 2 >nul
 exit /b
 
