@@ -9,8 +9,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - 🌌 **Hibernate**: Hibernate the computer in 5 seconds with countdown.
 - 📶 **Wi-Fi On/Off**: Toggle Wi-Fi status. 👉 *Read below for important settings.*
 - 🖤 **Black Screen**: Instantly turn off the screen without sleep or shutdown or hibernate.
-- ⏱️ **Sleep & Screen Timer**: Automatically put the device to sleep, hibernate and turn off the screen after a set time.
-- ♻️ **Restore Time**: Restore default screen and sleep settings.
+- ⏱️ **Power Setting Manager**: Manage the timing settings for Screen Off, Sleep, Hibernate, and Hard Disk Off.
 - 🟢 **Schedule Shutdown**: Schedule a shutdown at a specific time.
 - 📴 **Wi-Fi OFF Schedule**: Automatically turn off Wi-Fi at specific time.
 - 🖥️➡️📺 **Display Switch**: Toggle between “PC screen only” and “Extend” modes.
