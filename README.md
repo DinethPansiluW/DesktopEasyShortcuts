@@ -14,6 +14,7 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 - 📴 **Wi-Fi OFF Schedule**: Automatically turn off Wi-Fi at specific time.
 - 🖥️➡️📺 **Display Switch**: Toggle between “PC screen only” and “Extend” modes.
 - ⚙️ **Graphic Settings**: Open advanced graphics settings panel.
+- 🐞 **Windows Unwanted Service Manager**: Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager
 
 ## 📁 Installation
 
