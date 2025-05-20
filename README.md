@@ -18,10 +18,11 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 ## 📁 Installation
 
-1. ⬇Download all the files and folders from the repository.
-2. Create a folder on the `D:` drive named **`-Scripts`** (**⚠️ Important** ).
-3. Copy all the downloaded files and folders into the `D:\-Scripts` directory.
-4. Open the `Shortcuts` folder (`D:\-Scripts\Shortcuts`) and copy its contents (shortcuts with icons) to your desktop.
+1. ⬇ Download all the files and folders from the repository.  
+2. Copy all the files and folders to any location of your choice.  
+3. Run the `Shortcuts Create.bat` file.  
+4. The shortcuts will be created on your desktop and will be ready to use.
+
 
 
 ## 🛠️ Usage
