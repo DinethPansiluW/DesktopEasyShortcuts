@@ -43,13 +43,13 @@ powershell -Command ^
 $WshShell = New-Object -ComObject WScript.Shell; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Shutdown.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Shutdown\Run.vbs'; ^
+$Shortcut.TargetPath = '%~dp0Shutdown\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Shutdown\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Restart.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Restart\Run.vbs'; ^
+$Shortcut.TargetPath = '%~dp0Restart\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Restart\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
@@ -61,7 +61,7 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Wi-Fi ON OFF.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Wi-Fi ON OFF\Run.vbs'; ^
+$Shortcut.TargetPath = '%~dp0Wi-Fi ON OFF\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
@@ -102,26 +102,26 @@ $Shortcut.IconLocation = '%~dp0Graphic Settings\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\Unwanted System Services Manager.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Unwanted System Services Manager\Run.bat'; ^
-$Shortcut.IconLocation = '%~dp0Unwanted System Services Manager\Icon.ico'; ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Unwanted Services Manager.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Unwanted Services Manager\Run.bat'; ^
+$Shortcut.IconLocation = '%~dp0Unwanted Services Manager\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\Windows Update.lnk'); ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Update.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Windows Update\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Windows Update\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\MS Store Installed Apps.lnk'); ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- MS Store Installed Apps.lnk'); ^
 $Shortcut.TargetPath = '%~dp0MS Store Installed Apps\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0MS Store Installed Apps\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\Hibernate.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Hibernate\Run.vbs'; ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Hibernate\Icon.ico'; ^
 $Shortcut.Save();
 
