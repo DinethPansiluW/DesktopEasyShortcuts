@@ -1,8 +1,13 @@
 @echo off
+
+
+set WiFiName="Hemis WiFi"
+
+
 netsh interface show interface name="Wi-Fi" | findstr /C:"Connected" >nul
 if %errorlevel%==0 (
-    start "" "WiFi OFF.lnk"
+    netsh wlan disconnect
 ) else (
-    start "" "WiFi ON.lnk"
+    netsh wlan connect name=%WiFiName%
 )
 exit
