@@ -27,6 +27,7 @@ echo %Time%>time.txt
   echo echo.
   echo for /l %%%%i in ^(!Time!,-1,1^) do ^(
   echo    echo Restarting in %%%%i seconds...
+  echo    echo.
   echo    timeout /t 1 /nobreak ^>nul
   echo ^)
   echo shutdown /r /t 0

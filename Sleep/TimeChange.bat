@@ -27,6 +27,7 @@ echo %Time%>time.txt
   echo echo.
   echo for /l %%%%i in ^(!Time!,-1,1^) do ^(
   echo    echo Sleeping in %%%%i seconds...
+  echo    echo.
   echo    timeout /t 1 /nobreak ^>nul
   echo ^)
   echo rundll32.exe powrprof.dll,SetSuspendState 0,1,0

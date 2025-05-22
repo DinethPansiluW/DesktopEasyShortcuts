@@ -8,6 +8,7 @@ powershell -Command "Write-Host 'Countdown Start to Shutdown' -ForegroundColor C
 echo.
 for /l %%i in (10,-1,1) do (
    echo Shutting down in %%i seconds...
+echo.
    timeout /t 1 /nobreak >nul
 )
 shutdown /s /t 0
