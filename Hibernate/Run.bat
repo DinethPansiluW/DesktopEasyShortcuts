@@ -28,4 +28,4 @@ for /l %%i in (!Time!,-1,1) do (
 )
 
 :: Start shutdown
-start "" "Hibernate.vbs"
+start "" "%~dp0Hibernate.vbs"

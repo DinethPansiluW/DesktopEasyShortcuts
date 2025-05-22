@@ -28,4 +28,4 @@ for /l %%i in (!Time!,-1,1) do (
 )
 
 :: Start shutdown
-start "" "Restart.vbs"
+start "" "%~dp0Restart.vbs"
