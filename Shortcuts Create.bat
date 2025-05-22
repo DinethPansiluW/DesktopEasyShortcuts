@@ -3,12 +3,10 @@
 :: Check for admin rights
 net session >nul 2>&1
 if %errorlevel% neq 0 (
-    :: Create a temporary VBScript to relaunch this script with admin rights
     >"%temp%\getadmin.vbs" (
         echo Set UAC = CreateObject^("Shell.Application"^)
         echo UAC.ShellExecute "%~f0", "", "", "runas", 1
     )
-    :: Run the VBScript silently and exit the current window
     "%temp%\getadmin.vbs"
     del "%temp%\getadmin.vbs"
     exit
@@ -23,22 +21,25 @@ set "RESET=[0m"
 set "PINK=[3;35m"
 set "SKYBLUE=[96m"
 
+call "%~dp0Wi-Fi ON OFF\WiFiRunCreate.bat"
+
+:: Continue with original logic
 set "SHORTCUT_DIR=%USERPROFILE%\Desktop"
 
 echo.
 echo.
-:: Create Additional folder if missing
 if not exist "%SHORTCUT_DIR%\Additional" (
-    mkdir "%USERPROFILE%\Desktop\Additional"
-    echo %RESET%Folder created.
+    mkdir "%SHORTCUT_DIR%\Additional"
+    echo %RESET%'Additional' Folder created.
+    echo %ORANGE%Some Scripts add to that folder%RESET%
 ) else (
-    echo Folder already exists.
+    echo 'Additional' Folder already exists.
+    echo %ORANGE%Some Scripts add to that folder%RESET%
 )
 
 echo.
 echo %GREEN%Wait....
 
-rem Use PowerShell to create each shortcut
 powershell -Command ^
 $WshShell = New-Object -ComObject WScript.Shell; ^
 
@@ -128,10 +129,12 @@ $Shortcut.Save();
 echo.
 echo %SKYBLUE%Shortcut created according to the recommended order.
 echo.
-echo %ORANGE%Check Additional Folder for additional Scripts
-echo.
 echo %GREEN% Wait.....
+echo.
+echo %PINK%All Done
 
 timeout /t 5 /nobreak >nul
+
+powershell -command "(New-Object -ComObject Shell.Application).MinimizeAll()"
 
 exit
