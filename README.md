@@ -35,13 +35,6 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 > ⚠️ **Important: Wi-Fi Control Settings**
 
-### 📶 Wi-Fi ON/OFF
-- **To connect to your Wi-Fi**:
-  - Right-click the **Wi-Fi ON OFF** icon → select 📝 **Edit** or **Edit with Notepad**.
-  - Locate the line: `set WiFiName="Hemis WiFi"`.
-  - Replace `"Hemis WiFi"` with your actual Wi-Fi network name (SSID).
-  - Save the file and close the editor.
-
 ### ⚙️ Others
 - Use shortcuts for quick access to frequently used system settings and actions.
 
