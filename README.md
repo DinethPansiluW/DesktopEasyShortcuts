@@ -1,22 +1,24 @@
 # 🖥️ Windows Easy Scripts
 
-A collection of simple scripts for common Windows tasks, designed for ease of use and quick access.
+A collection of simple batch scripts for common Windows tasks — designed for quick access, ease of use, and everyday convenience.
 
 ## ✨ Features
-- 🔴 **Shutdown**: Shut down the computer in 5 seconds with countdown.
-- 🔁 **Restart**: Restart the computer in 5 seconds with countdown.
-- 🌙 **Sleep**: Put the computer to sleep in 5 seconds with countdown.
-- 🌌 **Hibernate**: Hibernate the computer in 5 seconds with countdown. (Create in 'Additions' Folder)
-- 📶 **Wi-Fi On/Off**: Toggle Wi-Fi status. 👉 *Read below for important settings.*
-- 🖤 **Black Screen**: Instantly turn off the screen without sleep, shutdown, or hibernate.
-- ⏱️ **Power Setting Manager**: Manage timing for Screen Off, Sleep, Hibernate, and Hard Disk Off.
-- 🟢 **Schedule Shutdown**: Schedule a shutdown at a specific time.
-- 📴 **Wi-Fi OFF Schedule**: Automatically turn off Wi-Fi at a specific time.
-- 🖥️➡️📺 **Display Switch**: Toggle between “PC screen only” and “Extend” display modes.
-- ⚙️ **Graphic Settings**: Open the advanced graphics settings panel.
-- 🐞 **Windows Unwanted Service Manager**: Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager (Create in 'Additions' Folder)
-- 🔄 **Windows Update**: Manage Windows Update settings with a simple script-view status and toggle automatic updates quickly. (Create in 'Additions' Folder)
-- 🛍️ **MS Store Installed Apps**: Open the folder containing Microsoft Store app shortcuts and optionally create desktop shortcuts for quick access. (Create in 'Additions' Folder)
+
+- 🔴 **Shutdown** – Shut down the computer with a customizable countdown timer.
+- 🔁 **Restart** – Restart the computer with a customizable countdown timer.
+- 🌙 **Sleep** – Put the computer to sleep with a customizable countdown timer.
+- 🌌 **Hibernate** – Hibernate the computer with a customizable countdown timer. *(Located in the 'Additions' folder)*
+- 📶 **Wi-Fi On/Off** – Toggle Wi-Fi status. 👉 *See below for important configuration notes.*
+- 🖤 **Black Screen** – Instantly turn off the display without putting the system to sleep.
+- ⏱️ **Power Setting Manager** – Customize timers for Screen Off, Sleep, Hibernate, and Hard Disk Off.
+- 🟢 **Schedule Shutdown** – Set your system to shut down at a specific time.
+- 📴 **Wi-Fi OFF Schedule** – Automatically disable Wi-Fi at a specific time.
+- 🖥️➡️📺 **Display Switch** – Toggle between “PC screen only” and “Extend” display modes.
+- ⚙️ **Graphic Settings** – Open the advanced graphics settings panel.
+- 🐞 **Windows Unwanted Service Manager** – Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager *(Located in the 'Additions' folder)*
+- 🔄 **Windows Update** – View and toggle Windows Update settings quickly via script. *(Located in the 'Additions' folder)*
+- 🛍️ **MS Store Installed Apps** – Open the folder of Microsoft Store app shortcuts and optionally create desktop shortcuts. *(Located in the 'Additions' folder)*
+- ⌛ **Power Action Time Manager** – View and modify the countdown times for Shutdown, Restart, Sleep, and Hibernate actions. *(Located in the 'Additions' folder)*
 
 ## 📁 Installation
 
@@ -29,11 +31,9 @@ A collection of simple scripts for common Windows tasks, designed for ease of us
 
 ### 🔴🔁🌙🌌 Basic Power Functions (Shutdown / Restart / Sleep / Hibernate)
 - Double-click the shortcut to run.
-- To **change the delay time**:  
-  - Right-click the script or shortcut and choose **Edit** (opens in Notepad).  
-  - Locate `Time=` and update the number of seconds (e.g., `Time=5`).
-
-> ⚠️ **Important: Wi-Fi Control Settings**
+- To **change the delay time**:
+  - Use the **Power Action Time Manager** script *(in the 'Additions' folder)* to interactively set your preferred countdown times.
+  - Alternatively, right-click the script or shortcut, choose **Edit**, and update the `Time=` value.
 
 ### ⚙️ Others
 - Use shortcuts for quick access to frequently used system settings and actions.
@@ -47,5 +47,3 @@ This project is proprietary software.
 Unauthorized modification, distribution, or use is strictly prohibited.  
 All rights reserved under applicable copyright laws, including the Digital Millennium Copyright Act (DMCA) and international intellectual property treaties.  
 Violations may result in civil and criminal penalties.
-
-
