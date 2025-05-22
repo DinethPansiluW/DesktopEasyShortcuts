@@ -18,9 +18,9 @@ set "PINK=%ESC%[3;35m"
 set "SKYBLUE=%ESC%[96m"
 
 :wificonfirm
-set /p "wificonfirm=Do you have Wi-Fi? (y/n): %RED%"
+set /p "wificonfirm=Do you have Wi-Fi? (y/n): %GREEN%"
 if /I "%wificonfirm%"=="y" goto input
-if /I "%wificonfirm%"=="n" goto createonwifi
+if /I "%wificonfirm%"=="n" goto createnowifi
 echo %RESET%Invalid input. Please type 'y' or 'n'.
 goto wificonfirm
 
@@ -28,16 +28,12 @@ goto wificonfirm
 cls
 echo.
 echo.
-echo %GREEN%This script is 100%% safe and will help make your work easier.%RESET%
-echo.
 echo --------------%RED% ! IMPORTANT ! %RESET%--------------
-echo %ORANGE%Enter the correct name of Wi-Fi. If it doesn't work or you want to change it, just run this script again.%RESET%
 echo %SKYBLUE%The script is 100%% safe and does not use your Wi-Fi or any of its resources.%RESET%
 echo.
 set /p "WiFiName=Enter WiFi Name (SSID): %GREEN%"
 echo.
 echo %RESET%You entered: %GREENU%"%WiFiName%"%RESET%
-goto confirm
 
 :confirm
 set /p "confirm=Is this correct? (y/n): %RED%"
@@ -46,14 +42,17 @@ if /I "%confirm%"=="n" goto input
 echo %RESET%Invalid input. Please type 'y' or 'n'.
 goto confirm
 
-:createonwifi
-(
-  echo @echo off
-  echo call "%~dp0WiFiNameChange.bat"
-)>"%~dp0Run.bat"
-goto :EOF
+:createnowifi
+exit
 
 :create
+
+echo.
+echo %GREEN%Wi-Fi On OFF%RESET% Script Created successfully
+echo.
+echo %GREEN%Wait.....%RESET%
+timeout /t 3 /nobreak >nul
+
 (
     echo @echo off
     echo set WiFiName="%WiFiName%"
@@ -65,11 +64,7 @@ goto :EOF
     echo     netsh wlan connect name^="%WiFiName%"
     echo ^)
     echo exit
-)>"%~dp0Run.bat"
-
-echo.
-echo %GREEN%Wi-Fi On OFF%RESET% Script Created successfully
-goto :EOF
+)>Run.bat
 
 echo.
 echo %ORANGE%Press any key to continue...

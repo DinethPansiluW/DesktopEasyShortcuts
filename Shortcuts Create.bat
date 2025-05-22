@@ -127,6 +127,12 @@ $Shortcut.IconLocation = '%~dp0Power Buttons Time Manager\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- WiFiNameChange.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Wi-Fi ON OFF\WiFiNameChange.bat'; ^
+$Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\WiFiNameChange.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Hibernate\Icon.ico'; ^
