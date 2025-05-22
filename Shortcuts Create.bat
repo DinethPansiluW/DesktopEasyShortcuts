@@ -121,6 +121,12 @@ $Shortcut.IconLocation = '%~dp0MS Store Installed Apps\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Power Buttons Time Managerr.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Power Buttons Time Manager\Run.bat'; ^
+$Shortcut.IconLocation = '%~dp0Power Buttons Time Manager\Icon.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.IconLocation = '%~dp0Hibernate\Icon.ico'; ^

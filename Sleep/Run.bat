@@ -2,20 +2,12 @@
 title Sleep Countdown
 color 0A
 setlocal enabledelayedexpansion
-
-:: Set the countdown time in seconds
-set "Time=5"
-
-:: Disable Ctrl+C prompt
-break >nul
-
-echo Press Ctrl+C to cancel (no confirmation)
+set "Time=10"
+cls
+powershell -Command "Write-Host 'Countdown Start to Sleep' -ForegroundColor Cyan"
 echo.
-
-for /l %%i in (!Time!,-1,1) do (
-    echo Sleeping in %%i seconds...
-    timeout /t 1 /nobreak >nul
+for /l %%i in (10,-1,1) do (
+   echo Sleeping in %%i seconds...
+   timeout /t 1 /nobreak >nul
 )
-
-:: Put computer to sleep
 rundll32.exe powrprof.dll,SetSuspendState 0,1,0
