@@ -69,6 +69,8 @@ echo %WiFiName%>"%WiFiNameFile%"
 echo.
 echo %GREEN%Wi-Fi On OFF Script Created successfully
 echo.
+echo %RED%Check if the 'Wi-Fi ON/OFF' button on the desktop is working
+echo.
 echo %RESET%Wait...
 timeout /t 3 >nul
 echo.

@@ -33,7 +33,7 @@ if not exist "%SHORTCUT_DIR%\Additional" (
     echo %RESET%'Additional' Folder created.
     echo %ORANGE%Some Scripts add to that folder%RESET%
 ) else (
-    echo 'Additional' Folder already exists.
+    echo %RESET%'Additional' Folder already exists.
     echo %ORANGE%Some Scripts add to that folder%RESET%
 )
 
@@ -127,7 +127,7 @@ $Shortcut.IconLocation = '%~dp0Power Buttons Time Manager\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- WiFiNameChange.lnk'); ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- WiFi Name Change.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Wi-Fi ON OFF\WiFiNameChange.bat'; ^
 $Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\WiFiNameChange.ico'; ^
 $Shortcut.Save(); ^

@@ -1,6 +1,5 @@
 @echo off
 :: Enable ANSI escape sequences on Windows 10+ (optional)
-:: You can remove or comment out the following lines if not supported
 reg query HKCU\Console | findstr VirtualTerminalLevel >nul 2>&1
 if errorlevel 1 (
     reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul
@@ -17,8 +16,14 @@ set "RESET=%ESC%[0m"
 set "PINK=%ESC%[3;35m"
 set "SKYBLUE=%ESC%[96m"
 
+cls
+echo.
+echo %GREEN%Welcome to the Wi-Fi Toggle Script%RESET%
+echo.
+echo.
+
 :wificonfirm
-set /p "wificonfirm=Do you have Wi-Fi? (y/n): %RED%"
+set /p "wificonfirm=%ORANGE%Do you have a Wi-Fi? (y/n): %SKYBLUE%"
 if /I "%wificonfirm%"=="y" goto input
 if /I "%wificonfirm%"=="n" goto createonwifi
 echo %RESET%Invalid input. Please type 'y' or 'n'.
@@ -31,7 +36,6 @@ echo.
 echo %GREEN%This script is 100%% safe and will help make your work easier.%RESET%
 echo.
 echo --------------%RED% ! IMPORTANT ! %RESET%--------------
-echo %ORANGE%Enter the correct name of Wi-Fi. If it doesn't work or you want to change it, just run this script again.%RESET%
 echo %SKYBLUE%The script is 100%% safe and does not use your Wi-Fi or any of its resources.%RESET%
 echo.
 set /p "WiFiName=Enter WiFi Name (SSID): %GREEN%"
@@ -47,28 +51,34 @@ echo %RESET%Invalid input. Please type 'y' or 'n'.
 goto confirm
 
 :createonwifi
-(
-  echo @echo off
-  echo call "%~dp0WiFiNameChange1.bat"
-)>"%~dp0Run.bat"
-goto :EOF
+exit
 
 :create
+
+echo.
+echo %GREEN%Wi-Fi On OFF Script Created successfully
+echo.
+echo %RED%Check if the 'Wi-Fi ON/OFF' button on the desktop is working
+echo.
+echo %RESET%Wait...
+timeout /t 5 >nul
+echo.
+echo %SKYBLUE%Done
+timeout /t 2 >nul
+
+
 (
     echo @echo off
-    echo set WiFiName="%WiFiName%"
+    echo set "WiFiName=%WiFiName%"
     echo.
     echo netsh interface show interface name^="Wi-Fi" ^| findstr /C:"Connected" ^>nul
     echo if %%errorlevel%%==0 ^(
     echo     netsh wlan disconnect
     echo ^) else ^(
-    echo     netsh wlan connect name^="%WiFiName%"
+    echo     netsh wlan connect name^="%%WiFiName%%"
     echo ^)
     echo exit
 )>"%~dp0Run.bat"
-
-echo.
-echo %GREEN%Wi-Fi On OFF%RESET% Script Created successfully
 goto :EOF
 
 echo.

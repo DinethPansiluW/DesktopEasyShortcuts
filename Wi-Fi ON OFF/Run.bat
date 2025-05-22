@@ -1,2 +1,10 @@
 @echo off
-call "D:\- Scripts\Wi-Fi ON OFF\WiFiNameChange.bat"
+set "WiFiName=Hemis WiFi"
+
+netsh interface show interface name="Wi-Fi" | findstr /C:"Connected" >nul
+if %errorlevel%==0 (
+    netsh wlan disconnect
+) else (
+    netsh wlan connect name="%WiFiName%"
+)
+exit
