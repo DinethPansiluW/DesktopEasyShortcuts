@@ -8,9 +8,9 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - 🔁 **Restart** – Restart the computer with a customizable countdown timer.
 - 🌙 **Sleep** – Put the computer to sleep with a customizable countdown timer.
 - 🌌 **Hibernate** – Hibernate the computer with a customizable countdown timer. *(Located in the 'Additions' folder)*
-- 📶 **Wi-Fi On/Off** – Toggle Wi-Fi status. 👉 *See below for important configuration notes.*
-- 🖤 **Black Screen** – Instantly turn off the display without putting the system to sleep.
-- ⏱️ **Power Setting Manager** – Customize timers for Screen Off, Sleep, Hibernate, and Hard Disk Off.
+- 📶 **Wi-Fi On/Off** – Toggle Wi-Fi status.(ON👉OFF | OFF👉ON)
+- 🖤 **Black Screen** – Instantly turn off the display without putting the system to sleep & hibernate.
+- ⏱️ **Power Setting Manager** – Customize timers for Screen Off, Sleep, Hibernate, and Hard Disk Off & more options(Ex-Power plan manager,...).
 - 🟢 **Schedule Shutdown** – Set your system to shut down at a specific time.
 - 📴 **Wi-Fi OFF Schedule** – Automatically disable Wi-Fi at a specific time.
 - 🖥️➡️📺 **Display Switch** – Toggle between “PC screen only” and “Extend” display modes.
@@ -33,7 +33,6 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - Double-click the shortcut to run.
 - To **change the delay time**:
   - Use the **Power Action Time Manager** script *(in the 'Additions' folder)* to interactively set your preferred countdown times.
-  - Alternatively, right-click the script or shortcut, choose **Edit**, and update the `Time=` value.
 
 ### ⚙️ Others
 - Use shortcuts for quick access to frequently used system settings and actions.
