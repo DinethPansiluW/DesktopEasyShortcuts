@@ -2,6 +2,8 @@
 
 A collection of simple batch scripts for common Windows tasks — designed for quick access, ease of use, and everyday convenience.
 
+✅100% safe scripts.
+
 ## ✨ Features
 
 - 🔴 **Shutdown** – Shut down the computer with a customizable countdown timer.
