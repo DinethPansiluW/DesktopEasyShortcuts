@@ -15,7 +15,7 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - ⏱️ **Power Setting Manager** – Customize timers for Screen Off, Sleep, Hibernate, and Hard Disk Off & more options(Ex-Power plan manager,...).
 - 🟢 **Schedule Shutdown** – Set your system to shut down at a specific time.
 - 📴 **Wi-Fi OFF Schedule** – Automatically disable Wi-Fi at a specific time.
-- 🖥️➡️📺 **Display Switch** – Toggle between “PC screen only” and “Extend” display modes.
+- 📺➡️🖥️ **Display Switch** – Toggle between “PC screen only” and “Extend” display modes.
 - ⚙️ **Graphic Settings** – Open the advanced graphics settings panel.
 - 🐞 **Windows Unwanted Service Manager** – Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager *(Located in the 'Additions' folder)*
 - 🔄 **Windows Update** – View and toggle Windows Update settings quickly via script. *(Located in the 'Additions' folder)*
