@@ -128,7 +128,7 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- MS Store Installed Apps.lnk'); ^
-$Shortcut.TargetPath = '%~dp0MS Store Installed Apps\Run.bat'; ^
+$Shortcut.TargetPath = '%~dp0MS Store Installed Apps\Run.vbs'; ^
 $Shortcut.WorkingDirectory = '%~dp0MS Store Installed Apps'; ^
 $Shortcut.IconLocation = '%~dp0MS Store Installed Apps\Icon.ico'; ^
 $Shortcut.Save(); ^
