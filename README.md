@@ -10,7 +10,7 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - 🔁 **Restart** – Restart the computer with a customizable countdown timer.
 - 🌙 **Sleep** – Put the computer to sleep with a customizable countdown timer.
 - 🌌 **Hibernate** – Hibernate the computer with a customizable countdown timer. *(Located in the 'Additions' folder)*
-- 📶 **Wi-Fi On/Off** – Toggle Wi-Fi status.(ON👉OFF | OFF👉ON)
+- 📶 **Wi-Fi On/Off** – Toggle Wi-Fi status.(ON👉OFF | OFF👉ON) ‼️*See below for important configuration notes.*‼️
 - 🖤 **Black Screen** – Instantly turn off the display without putting the system to sleep & hibernate.
 - ⏱️ **Power Setting Manager** – Customize timers for Screen Off, Sleep, Hibernate, and Hard Disk Off & more options(Ex-Power plan manager,...).
 - 🟢 **Schedule Shutdown** – Set your system to shut down at a specific time.
