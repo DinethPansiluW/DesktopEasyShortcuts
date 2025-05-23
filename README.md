@@ -36,6 +36,19 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - To **change the delay time**:
   - Use the **Power Action Time Manager** script *(in the 'Additions' folder)* to interactively set your preferred countdown times.
 
+### 📶 Wi-Fi Connect/Disconnect Script
+- This script is used to connect to or disconnect from a specific Wi-Fi network.
+- **It does not turn the Wi-Fi adapter ON or OFF.**
+- Ensure that Wi-Fi is manually turned ON before running the script.
+- The script attempts to connect to a predefined SSID. If you're not connected:
+  - It will try to connect to the SSID set in the script.
+  - If the SSID is incorrect or unavailable, the connection will fail.
+- If already connected to the target SSID:
+  - The script will disconnect from it.
+- To connect to a specific Wi-Fi network or change the Wi-Fi SSID:
+  - Use the **Wi-Fi Name Change** script *(located in the 'Additions' folder)*.
+  - Ensure the target SSID is correct before attempting connection.
+
 ### ⚙️ Others
 - Use shortcuts for quick access to frequently used system settings and actions.
 
