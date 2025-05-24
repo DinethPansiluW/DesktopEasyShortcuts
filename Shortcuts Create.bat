@@ -134,7 +134,7 @@ $Shortcut.IconLocation = '%~dp0MS Store Installed Apps\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Power Buttons Time Managerr.lnk'); ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Power Buttons Time Manager.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Power Buttons Time Manager\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Power Buttons Time Manager'; ^
 $Shortcut.IconLocation = '%~dp0Power Buttons Time Manager\Icon.ico'; ^
@@ -145,6 +145,13 @@ $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- WiFi Name Chan
 $Shortcut.TargetPath = '%~dp0Wi-Fi ON OFF\WiFiNameChange.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Wi-Fi ON OFF'; ^
 $Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\WiFiNameChange.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Defender Manager.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Windows Defender\Run.bat'; ^
+$Shortcut.WorkingDirectory = '%~dp0Windows Defender'; ^
+$Shortcut.IconLocation = '%~dp0Windows Defender\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
