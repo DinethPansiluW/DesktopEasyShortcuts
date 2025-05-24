@@ -20,7 +20,6 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - 🐞 **Windows Unwanted Service Manager** – Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager *(Located in the 'Additions' folder)*
 - 🔄 **Windows Update** – View and toggle Windows Update settings quickly via script. *(Located in the 'Additions' folder)*
 - 🛍️ **MS Store Installed Apps** – Open the folder of Microsoft Store app shortcuts and optionally create desktop shortcuts. *(Located in the 'Additions' folder)*
-- ⌛ **Power Action Time Manager** – View and modify the countdown times for Shutdown, Restart, Sleep, and Hibernate actions. *(Located in the 'Additions' folder)*
 
 ## 📁 Installation
 
@@ -30,11 +29,6 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 4. The shortcuts will be created on your desktop and will be ready to use.
 
 ## 🛠️ Usage
-
-### 🔴🔁🌙🌌 Basic Power Functions (Shutdown / Restart / Sleep / Hibernate)
-- Double-click the shortcut to run.
-- To **change the delay time**:
-  - Use the **Power Action Time Manager** script *(in the 'Additions' folder)* to interactively set your preferred countdown times.
 
 ### 📶 Wi-Fi Connect/Disconnect Script
 - This script is used to connect to or disconnect from a specific Wi-Fi network.
