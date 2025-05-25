@@ -104,7 +104,9 @@ powershell -NoProfile -Command ^
   "[WinAPI.User32]::SendMessage(0xFFFF, 0x0112, 0xF170, 2)"
 
 echo.
-echo %RED%Press Any Key to Restore the Times%RESET%
+echo %RED%DO NOT CLOSE.
+echo.
+echo %SKYBLUE%Press Any Key to Restore the Times%RESET%
 pause >nul
 
 

@@ -1,0 +1,1 @@
+﻿/t:library /utf8output /R:"System.dll" /R:"C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll" /R:"System.Core.dll" /out:"D:\- Scripts\Black Screen\5\ea4w0brx.dll" /debug- /optimize+ /warnaserror /optimize+  "D:\- Scripts\Black Screen\5\ea4w0brx.0.cs"
