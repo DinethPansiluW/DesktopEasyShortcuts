@@ -1,6 +1,20 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Check for admin rights
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    :: Create a temporary VBScript to relaunch this script with admin rights
+    >"%temp%\getadmin.vbs" (
+        echo Set UAC = CreateObject^("Shell.Application"^)
+        echo UAC.ShellExecute "%~f0", "", "", "runas", 1
+    )
+    :: Run the VBScript silently and exit the current window
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit
+)
+
 :: Maximize whatever window is currently in the foreground
 powershell -NoProfile -Command ^
   "$sig = '[DllImport(\"user32.dll\")]public static extern IntPtr GetForegroundWindow();[DllImport(\"user32.dll\")]public static extern bool ShowWindowAsync(IntPtr hWnd,int nCmdShow);';" ^

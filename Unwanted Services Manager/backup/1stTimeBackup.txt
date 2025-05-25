@@ -1,0 +1,12 @@
+REM Initial backup created on Sun 05/25/2025 10:47:05.91
+Spooler AUTO_START Running
+SysMain AUTO_START Running
+wuauserv DEMAND_START Running
+W32Time DEMAND_START Stopped
+Schedule AUTO_START Running
+WerSvc DEMAND_START Stopped
+TermService DEMAND_START Stopped
+WinDefend AUTO_START Running
+BITS AUTO_START Running
+WSearch AUTO_START Running
+HyperV AUTO_START Stopped

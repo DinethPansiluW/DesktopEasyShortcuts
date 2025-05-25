@@ -102,6 +102,7 @@ if exist "%RECOMMEND_BACKUP_FILE%" (
 
 )
 
+
 :: Check sleep state availability
 set "sleepAvailable=0"
 for /f "delims=" %%A in ('powercfg -query ^| findstr /i "Sleep after"') do (
