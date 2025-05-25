@@ -1,12 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Create and run VBScript to maximize the window
->temp.vbs echo Set WshShell = CreateObject("WScript.Shell")
->>temp.vbs echo WshShell.SendKeys "{F11}"
-start /min temp.vbs
-timeout /t 1 >nul
-del temp.vbs
+:: Maximize whatever window is currently in the foreground
+powershell -NoProfile -Command ^
+  "$sig = '[DllImport(\"user32.dll\")]public static extern IntPtr GetForegroundWindow();[DllImport(\"user32.dll\")]public static extern bool ShowWindowAsync(IntPtr hWnd,int nCmdShow);';" ^
+  "$type = Add-Type -MemberDefinition $sig -Name NativeMethods -Namespace WinAPI -PassThru;" ^
+  "$hwnd = [WinAPI.NativeMethods]::GetForegroundWindow();" ^
+  "[WinAPI.NativeMethods]::ShowWindowAsync($hwnd,3)"
 
 :: Set ANSI color escape codes
 set "GREEN=[1;32m"
