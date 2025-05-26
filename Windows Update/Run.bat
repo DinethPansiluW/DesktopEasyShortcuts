@@ -1,145 +1,138 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal enableextensions disabledelayedexpansion
 
-:: Check for admin rights
-net session >nul 2>&1
+:: Nuclear elevation method using PowerShell
+whoami /groups | findstr /b /c:"Mandatory Label\High Mandatory Level" >nul
 if %errorlevel% neq 0 (
-    :: Create a temporary VBScript to relaunch this script with admin rights
-    >"%temp%\getadmin.vbs" (
-        echo Set UAC = CreateObject^("Shell.Application"^)
-        echo UAC.ShellExecute "%~f0", "", "", "runas", 1
-    )
-    :: Run the VBScript silently and exit the current window
-    "%temp%\getadmin.vbs"
-    del "%temp%\getadmin.vbs"
-    exit
-)
-
-:: Set ANSI color escape codes
-set "GREEN=[1;32m"
-set "GREENU=[4;32m"
-set "RED=[31m"
-set "ORANGE=[33m"
-set "RESET=[0m"
-set "PINK=[3;35m"
-set "SKYBLUE=[96m"
-
-:: Administrator check
-net session >nul 2>&1
-if %errorLevel% neq 0 (
-    echo %ORANGE%Requesting administrator privileges...%RESET%
-    powershell -Command "Start-Process cmd -ArgumentList '/c %~s0' -Verb RunAs"
+    echo Requesting administrator privileges...
+    powershell -Command "Start-Process cmd -ArgumentList '/c %~f0' -Verb RunAs"
     exit /b
 )
 
-:main_menu
+:: Force 64-bit context detection
+if exist "%windir%\Sysnative\reg.exe" (
+    set "REGEXE=%windir%\Sysnative\reg.exe"
+    set "SCTOOL=%windir%\Sysnative\sc.exe"
+) else (
+    set "REGEXE=reg.exe"
+    set "SCTOOL=sc.exe"
+)
+
+set "KEY=HKLM\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection"
+
+:main
 cls
-echo %SKYBLUE%Windows Update Control Panel%RESET%
-echo ==========================
-echo.
 call :show_status
 echo.
-echo %GREEN%1.%RESET% Disable Automatic Updates (keep manual checks)
-echo %GREEN%2.%RESET% Enable Automatic Updates
-echo %GREEN%3.%RESET% Completely Disable Windows Update
-echo %GREEN%4.%RESET% Fully Enable Windows Update
-echo %GREEN%5.%RESET% Exit
+echo 1. Enable Defender
+echo 2. Disable Defender (permanent)
+echo 3. Disable Defender (until restart)
+echo 4. Exit
 echo.
-set /p choice=Select option [1-5]: 
+set /p choice=Choose [1-4]:
 
-if "%choice%"=="1" call :disable_auto_updates
-if "%choice%"=="2" call :enable_auto_updates
-if "%choice%"=="3" call :disable_windows_update
-if "%choice%"=="4" call :enable_windows_update
-if "%choice%"=="5" exit
-echo %RED%Invalid selection! Please try again.%RESET%
-pause
-goto main_menu
+if "%choice%"=="1" goto enable
+if "%choice%"=="2" goto disable_perm
+if "%choice%"=="3" goto disable_temp
+if "%choice%"=="4" exit /b
 
-:disable_auto_updates
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
-sc config wuauserv start= auto >nul
-sc config UsoSvc start= auto >nul
-net start wuauserv >nul 2>&1
-net start UsoSvc >nul 2>&1
-echo %PINK%Disabling automatic updates (manual checks remain available)...%RESET%
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 2 /f
-echo %ORANGE%Status: Automatic updates disabled (manual checks still work)%RESET%
-pause
-goto main_menu
-
-:enable_auto_updates
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
-sc config wuauserv start= auto >nul
-sc config UsoSvc start= auto >nul
-net start wuauserv >nul 2>&1
-net start UsoSvc >nul 2>&1
-echo %PINK%Enabling automatic updates...%RESET%
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
-echo %GREEN%Status: Automatic updates enabled%RESET%
-pause
-goto main_menu
-
-:disable_windows_update
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
-sc config wuauserv start= auto >nul
-sc config UsoSvc start= auto >nul
-net start wuauserv >nul 2>&1
-net start UsoSvc >nul 2>&1
-echo %PINK%Completely disabling Windows Update services...%RESET%
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 1 /f
-reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /f >nul 2>&1
-net stop wuauserv >nul 2>&1
-net stop UsoSvc >nul 2>&1
-sc config wuauserv start= disabled >nul
-sc config UsoSvc start= disabled >nul
-echo %RED%Status: Windows Update completely disabled%RESET%
-pause
-goto main_menu
-
-:enable_windows_update
-echo %PINK%Fully enabling Windows Update...%RESET%
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
-sc config wuauserv start= auto >nul
-sc config UsoSvc start= auto >nul
-net start wuauserv >nul 2>&1
-net start UsoSvc >nul 2>&1
-echo %GREEN%Status: Windows Update fully enabled%RESET%
-pause
-goto main_menu
+echo Invalid choice.
+pause>nul
+goto main
 
 :show_status
-set "auto_status=Not Configured"
-set "service_status=Running"
-set "policy_mode=Default"
-
-reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate >nul 2>&1
-if %errorlevel% equ 0 (
-    for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate 2^>nul') do (
-        if %%a equ 0x1 (set "auto_status=Disabled") else (set "auto_status=Enabled")
-    )
+set "svc=Unknown"
+for /f "tokens=3" %%A in ('"%SCTOOL%" query WinDefend ^| findstr /i "STATE"') do (
+    if /i "%%A"=="RUNNING" (set "svc=Running") else (set "svc=Stopped")
 )
 
-sc query wuauserv | find "STOPPED" >nul && set "service_status=Stopped"
-sc query wuauserv | find "DISABLED" >nul && set "service_status=Disabled"
+set "rtp=Enabled"
+for /f "tokens=3" %%B in ('"%REGEXE%" query "%KEY%" /v DisableRealtimeMonitoring 2^>nul') do (
+    if %%B NEQ 0x0 (set "rtp=Disabled")
+)
+echo Service State       : %svc%
+echo Real-Time Protection: %rtp%
+goto :eof
 
-reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions >nul 2>&1
-if %errorlevel% equ 0 (
-    for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions 2^>nul') do (
-        if %%a equ 0x2 (set "policy_mode=Notify to download")
-        if %%a equ 0x3 (set "policy_mode=Auto download, notify install")
-        if %%a equ 0x4 (set "policy_mode=Auto download and install")
-    )
+:disable_perm
+call :take_ownership
+echo Disabling permanently...
+"%REGEXE%" add "%KEY%" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f 2>&1 | findstr /i "error" && (
+    echo [ERROR] Registry update failed. Possible causes:
+    echo - Group Policy override
+    echo - Antivirus interference
+    call :check_group_policy
+    pause
+    goto main
 )
 
-echo %SKYBLUE%Current Status:%RESET%
-echo - Automatic Updates: %ORANGE%!auto_status!%RESET%
-echo - Windows Update Service: %ORANGE%!service_status!%RESET%
-echo - Update Policy: %ORANGE%!policy_mode!%RESET%
-exit /b
+"%SCTOOL%" stop WinDefend 2>&1 | findstr /i "failed" && (
+    echo [ERROR] Failed to stop service. Trying force stop...
+    taskkill /F /IM MsMpEng.exe /T >nul 2>&1
+    timeout /t 2 /nobreak >nul
+)
+
+"%SCTOOL%" config WinDefend start= disabled 2>&1 | findstr /i "error" && (
+    echo [ERROR] Failed to disable service. Trying registry method...
+    reg add "HKLM\SYSTEM\CurrentControlSet\Services\WinDefend" /v Start /t REG_DWORD /d 4 /f
+)
+echo Done. Reboot to apply permanent changes.
+pause>nul
+goto main
+
+:disable_temp
+call :take_ownership
+echo Disabling until restart...
+"%REGEXE%" add "%KEY%" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f || (
+    echo [ERROR] Registry update failed
+    pause
+    goto main
+)
+
+taskkill /F /IM MsMpEng.exe /T >nul 2>&1
+"%SCTOOL%" config WinDefend start= demand
+echo Done. Protection disabled until next reboot.
+pause>nul
+goto main
+
+:enable
+call :take_ownership
+echo Enabling Defender...
+"%REGEXE%" add "%KEY%" /v DisableRealtimeMonitoring /t REG_DWORD /d 0 /f || (
+    echo [ERROR] Registry update failed
+    pause
+    goto main
+)
+
+"%SCTOOL%" config WinDefend start= auto
+"%SCTOOL%" start WinDefend || (
+    echo [WARNING] Service start failed. Trying manual start...
+    net start WinDefend
+)
+echo Done. Check if real-time protection activates.
+pause>nul
+goto main
+
+:take_ownership
+:: Nuclear permission reset
+echo Acquiring registry ownership...
+takeown /f "%windir%\System32\MsMpEng.exe" >nul 2>&1
+icacls "%windir%\System32\MsMpEng.exe" /grant Administrators:F >nul 2>&1
+
+reg add "HKLM\SOFTWARE\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f >nul 2>&1
+
+takeown /f "%KEY%" /a >nul 2>&1
+icacls "%KEY%" /grant Administrators:F /t /c >nul 2>&1
+goto :eof
+
+:check_group_policy
+echo Checking Group Policy override...
+reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableRealtimeMonitoring 2>nul && (
+    echo [CRITICAL] Group Policy override detected!
+    echo You must edit Group Policy (gpedit.msc) at:
+    echo Computer Configuration -> Administrative Templates
+    echo -> Windows Components -> Windows Defender Antivirus
+    echo -> Turn off real-time protection
+)
+goto :eof

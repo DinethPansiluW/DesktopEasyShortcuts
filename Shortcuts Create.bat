@@ -148,7 +148,7 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Defender Manager.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Windows Defender\Run.bat'; ^
+$Shortcut.TargetPath = '%~dp0Windows Defender\Run.exe'; ^
 $Shortcut.WorkingDirectory = '%~dp0Windows Defender'; ^
 $Shortcut.IconLocation = '%~dp0Windows Defender\Icon.ico'; ^
 $Shortcut.Save(); ^
