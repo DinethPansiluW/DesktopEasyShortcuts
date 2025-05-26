@@ -28,6 +28,10 @@ echo.
 
 for /L %%i in (!Time!,-1,1) do (
     cls
+    echo.
+    echo.
+    echo.
+    echo.
     echo %GREEN%Hibernating in %%i seconds...%RESET%
     echo.
     echo %SKYBLUE%Press E to edit the countdown time.%RESET%

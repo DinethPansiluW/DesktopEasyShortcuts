@@ -18,6 +18,8 @@ set "PINK=%ESC%[3;35m"
 set "SKYBLUE=%ESC%[96m"
 
 :wificonfirm
+echo.
+echo.
 set /p "wificonfirm=Do you have Wi-Fi? (y/n): %RED%"
 if /I "%wificonfirm%"=="y" goto input
 if /I "%wificonfirm%"=="n" goto createonwifi
