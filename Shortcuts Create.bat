@@ -113,6 +113,12 @@ $Shortcut.IconLocation = '%~dp0Graphic Settings\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Readme.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Readme.txt'; ^
+$Shortcut.WorkingDirectory = '%~dp0'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Unwanted Services Manager.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Unwanted Services Manager\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Unwanted Services Manager'; ^
@@ -153,6 +159,7 @@ $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^
 $Shortcut.IconLocation = '%~dp0Hibernate\Icon.ico'; ^
 $Shortcut.Save();
+
 
 echo.
 echo %SKYBLUE%Shortcut created according to the recommended order.
