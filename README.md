@@ -4,6 +4,12 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 
 ✅100% safe scripts.
 
+
+## 📥 Download
+
+👉 [Click here to download the ZIP](https://github.com/DinethPansiluW/DesktopEasyShortcuts/archive/refs/heads/main.zip)
+
+
 ## ✨ Features
 
 - 🔴 **Shutdown** – Shut down the computer with a customizable countdown timer.
@@ -49,6 +55,15 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 ## ⚠️ Notes
 - Some scripts may require administrator privileges.
 - Scripts can be customized to suit your system preferences.
+
+---
+
+## 🧑‍💻 Author
+
+**Dineth Pansilu**  
+📫 Follow on GitHub: [DinethPansiluW](https://github.com/DinethPansiluW)
+
+---
 
 ## 📜 License
 This project is proprietary software.  
