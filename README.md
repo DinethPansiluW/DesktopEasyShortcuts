@@ -56,6 +56,12 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - Some scripts may require administrator privileges.
 - Scripts can be customized to suit your system preferences.
 
+## 📜 License
+This project is proprietary software.  
+Unauthorized modification, distribution, or use is strictly prohibited.  
+All rights reserved under applicable copyright laws, including the Digital Millennium Copyright Act (DMCA) and international intellectual property treaties.  
+Violations may result in civil and criminal penalties.
+
 ---
 
 ## 🧑‍💻 Author
@@ -64,9 +70,3 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 📫 Follow on GitHub: [DinethPansiluW](https://github.com/DinethPansiluW)
 
 ---
-
-## 📜 License
-This project is proprietary software.  
-Unauthorized modification, distribution, or use is strictly prohibited.  
-All rights reserved under applicable copyright laws, including the Digital Millennium Copyright Act (DMCA) and international intellectual property treaties.  
-Violations may result in civil and criminal penalties.
