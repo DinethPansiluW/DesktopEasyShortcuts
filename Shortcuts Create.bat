@@ -113,7 +113,7 @@ $Shortcut.IconLocation = '%~dp0Graphic Settings\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
-$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Readme.lnk'); ^
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Readme.txt.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Readme.txt'; ^
 $Shortcut.WorkingDirectory = '%~dp0'; ^
 $Shortcut.Save(); ^
@@ -151,6 +151,18 @@ $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Defend
 $Shortcut.TargetPath = '%~dp0Windows Defender\Run.exe'; ^
 $Shortcut.WorkingDirectory = '%~dp0Windows Defender'; ^
 $Shortcut.IconLocation = '%~dp0Windows Defender\Icon.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Cleano.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Cleano\Run.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Cleano'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Mem Reduct.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Mem Reduct\memreduct.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Mem Reduct'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 

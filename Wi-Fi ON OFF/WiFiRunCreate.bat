@@ -33,7 +33,7 @@ echo.
 echo %GREEN%This script is 100%% safe and will help make your work easier.%RESET%
 echo.
 echo --------------%RED% ! IMPORTANT ! %RESET%--------------
-echo %ORANGE%Enter the correct name of Wi-Fi. If it doesn't work or you want to change it, just run this script again.%RESET%
+echo %ORANGE%Enter the correct name of Wi-Fi. If it doesn't work or you want to change it, just run this script again or can change using '%RESET%Desktop\Addtitonal\- WiFi Name Change' %ORANGE%Script%RESET%
 echo %SKYBLUE%The script is 100%% safe and does not use your Wi-Fi or any of its resources.%RESET%
 echo.
 set /p "WiFiName=Enter WiFi Name (SSID): %GREEN%"
