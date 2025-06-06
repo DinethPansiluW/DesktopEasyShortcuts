@@ -1,3 +1,5 @@
+combined that script and this script
+
 @echo off
 setlocal enabledelayedexpansion
 
@@ -14,9 +16,21 @@ if %errorlevel% neq 0 (
     exit
 )
 
+set "tempScript=%temp%\CancelSchedule.bat"
+(
+    echo @echo off
+    echo schtasks /query /tn "Schedule Shutdown PC" 2^>nul 1^>nul ^&^& (
+    echo     schtasks /delete /tn "Schedule Shutdown PC" /f
+    echo )
+    echo schtasks /delete /tn "Cancel Schedule Shutdown" /f 2^>nul 1^>nul
+    echo del "%%~f0"
+)>"%tempScript%"
+
+schtasks /create /tn "Cancel Schedule Shutdown" /tr "\"%tempScript%\"" /sc ONSTART /ru SYSTEM /RL HIGHEST /F
+
 :main
 :: Cancel any previous scheduled shutdown tasks and clear screen
-schtasks /delete /tn "ShutdownPC" /f >nul 2>&1
+schtasks /delete /tn "Schedule Shutdown PC" /f >nul 2>&1
 shutdown /a >nul 2>&1
 cls
 
@@ -34,7 +48,7 @@ echo.
 set "mode=reschedule"
 set /p "newInput=Enter new shutdown time (HHMM) or 'cancel' : "
 if /i "%newInput%"=="cancel" (
-    schtasks /delete /tn "ShutdownPC" /f >nul 2>&1
+    schtasks /delete /tn "Schedule Shutdown PC" /f >nul 2>&1
     shutdown /a >nul 2>&1
     del "%TEMP%\shutdown_now.bat" >nul 2>&1
     echo Previous shutdown schedule canceled.
@@ -93,7 +107,7 @@ if %inputTimeMinutes% LEQ %currentTimeMinutes% (
 )
 
 :: Schedule the task
-schtasks /create /tn "ShutdownPC" /tr "\"%TEMP%\shutdown_now.bat\"" /sc once /st %formattedTime% /sd %startDate% /rl HIGHEST /f >nul 2>&1
+schtasks /create /tn "Schedule Shutdown PC" /tr "\"%TEMP%\shutdown_now.bat\"" /sc once /st %formattedTime% /sd %startDate% /rl HIGHEST /f >nul 2>&1
 
 :: Prepare display hour and AM/PM
 set /a displayHour=numHour %% 12
