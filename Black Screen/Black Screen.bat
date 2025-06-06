@@ -117,14 +117,19 @@ powershell -NoProfile -Command ^
   "Add-Type -MemberDefinition '[DllImport(\"user32.dll\")] public static extern int SendMessage(int hWnd,int hMsg,int wParam,int lParam);' -Name 'User32' -Namespace 'WinAPI';" ^
   "[WinAPI.User32]::SendMessage(0xFFFF, 0x0112, 0xF170, 2)"
 
+:WAIT_FOR_R
 echo.
 echo %RED%DO NOT CLOSE.
 echo.
-echo %SKYBLUE%Press Any Key to Restore the Times%RESET%
-pause >nul
+set /p key=%SKYBLUE%Press [R] to restore:%RESET% 
+echo.
+if /i "%key%"=="R" (
+    call :RESTORE_FROM_BACKUP
+) else (
+    echo Invalid input. Please press R to restore.
+    goto WAIT_FOR_R
+)
 
-
-call :RESTORE_FROM_BACKUP
 
 REM Rest of your script or exit
 exit /b
