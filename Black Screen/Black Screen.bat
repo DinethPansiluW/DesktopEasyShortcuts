@@ -121,14 +121,10 @@ powershell -NoProfile -Command ^
 echo.
 echo %RED%DO NOT CLOSE.
 echo.
-set /p key=%SKYBLUE%Press [R] to restore:%RESET% 
-echo.
-if /i "%key%"=="R" (
-    call :RESTORE_FROM_BACKUP
-) else (
-    echo Invalid input. Please press R to restore.
-    goto WAIT_FOR_R
-)
+echo %SKYBLUE%Press [R] to restore:%RESET%
+choice /c R /n >nul
+call :RESTORE_FROM_BACKUP
+
 
 
 REM Rest of your script or exit
