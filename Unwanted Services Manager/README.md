@@ -2,6 +2,11 @@
 
 This script is a tool for managing Windows services, providing an interactive menu for users to control, configure, and automate the state of essential services. It simplifies the process of managing services for system administrators and power users.
 
+## 📥 Download
+
+👉 [Click here to download the ZIP](https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager/archive/refs/heads/main.zip)
+
+
 ## Features
 
 - **Manage Services**: Start, stop, and configure the state of essential Windows services.
@@ -22,10 +27,10 @@ Run the script to launch the main menu, where you'll have several options to man
 ```
 =============== MAIN MENU ===============
 1. Print Spooler-------------- [ Automatic | Running ]
-2. SysMain-------------------- [ Disabled | Stopped ]
-3. Windows Update------------- [ Disabled | Stopped ]
-4. Windows Time--------------- [ Automatic | Stopped ]
-5. Launch Hyper-V------------ [  | Stopped ]
+2. SysMain-------------------- [ Disabled  | Stopped ]
+3. Windows Update------------- [ Disabled  | Running ]
+4. Windows Time--------------- [ Manual    | Stopped ]
+5. Launch Hyper-V------------- [ Stopped ]
 ...
 
 - Backup Live Status                ( b  )
@@ -95,5 +100,14 @@ If you would like to contribute to this project, feel free to fork the repositor
 ## License
 
 This script is licensed under the MIT License.
+
+---
+
+## 🧑‍💻 Author
+
+**Dineth Pansilu**  
+📫 Follow on GitHub: [DinethPansiluW](https://github.com/DinethPansiluW)
+
+---
 
 
