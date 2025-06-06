@@ -1,0 +1,11 @@
+Mode=AC
+Screen=0 min
+Sleep=0 min
+Hibernate=0 min
+HardDisk=0 min
+
+Mode=BATTERY
+Screen=0 min
+Sleep=0 min
+Hibernate=0 min
+HardDisk=0 min
