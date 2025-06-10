@@ -196,11 +196,13 @@ if "%choice%"=="5" call "%~dp0src\Hibernate.bat"
 if "%choice%"=="6" call "%~dp0src\HardDiskOFFTimer.bat"
 
 if "%choice%"=="7" (
-    call :CONFIRM "Are you sure Backup current settings?" :BACKUP_TIMES
+    call :CONFIRM "%GREEN%Are you sure Backup current settings?%RESET%" :BACKUP_TIMES
     goto MAIN_LOOP
 )
 if "%choice%"=="8" (
-    call :CONFIRM "Are you sure Restore settings from backup?" :RESTORE_FROM_BACKUP
+    call :INFO_BACKUP
+    echo.
+    call :CONFIRM "%GREEN%Are you sure Restore settings from backup?%RESET%" :RESTORE_FROM_BACKUP
     goto MAIN_LOOP
 )
 if "%choice%"=="9" call :INFO_BACKUP & pause & goto MAIN_LOOP
