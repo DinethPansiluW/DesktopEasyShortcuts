@@ -144,7 +144,7 @@ if exist %SystemDrive%\hiberfil.sys (
 )
 
 ::Hard Disk OFF Times Display
-echo !spacer!Hard Disk  - %ORANGE%!ac_hd_display!%RESET%      ^|     Hard Disk  - %ORANGE%!battery_hd_display!%RESET%
+echo !spacer!Hard Disk  - %ORANGE%!ac_hd_display!%RESET%     ^|     Hard Disk  - %ORANGE%!battery_hd_display!%RESET%
 
 echo.
 echo !spacer!%SKYBLUE%===================================================%RESET%

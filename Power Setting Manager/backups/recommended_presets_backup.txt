@@ -1,7 +1,7 @@
 AC Screen OFF      = 5
-AC Sleep           = 20
-AC Hibernate       = 180
-AC HD OFF          = 25
+AC Sleep           = 30
+AC Hibernate       = 60
+AC HD OFF          = 10
 
 Battery Screen OFF = 5
 Battery Sleep      = 10
