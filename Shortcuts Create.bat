@@ -154,6 +154,13 @@ $Shortcut.IconLocation = '%~dp0Windows Defender\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Network Device Create.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Network Device Create\Run.bat'; ^
+$Shortcut.WorkingDirectory = '%~dp0Network Device Create'; ^
+$Shortcut.IconLocation = '%~dp0Network Device Create\Icon.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Cleano.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Cleano\Run.exe'; ^
 $Shortcut.WorkingDirectory = '%~dp0Cleano'; ^

@@ -62,8 +62,8 @@ echo %ORANGE%Use that address to access shared folders%RESET%
 echo.
 
 :: Ask user for IP and shortcut name
-set /p ip=Enter the IP address of the second PC: 
-set /p scname=Enter a name for the desktop shortcut: 
+set /p ip=%RESET%Enter the IP address of the second PC: %SKYBLUE%
+set /p scname=%RESET%Enter a name for the desktop shortcut: %SKYBLUE% 
 
 :: Create desktop shortcut
 set "target=\\%ip%"
