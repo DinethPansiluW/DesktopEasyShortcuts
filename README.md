@@ -26,6 +26,7 @@ A collection of simple batch scripts for common Windows tasks — designed for q
 - 🐞 **Windows Unwanted Service Manager** – Read this Repository 👉 https://github.com/DinethPansiluW/Win_Unwanted_Services_Manager *(Located in the 'Additions' folder)*
 - 🔄 **Windows Update** – View and toggle Windows Update settings quickly via script. *(Located in the 'Additions' folder)*
 - 🛍️ **MS Store Installed Apps** – Open the folder of Microsoft Store app shortcuts and optionally create desktop shortcuts. *(Located in the 'Additions' folder)*
+- 🌐 **Network Device Create** – Create a desktop shortcut to another PC's shared folders using its IP address.
 
 ## 📁 Installation
 
