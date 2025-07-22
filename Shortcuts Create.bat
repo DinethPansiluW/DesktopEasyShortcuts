@@ -148,7 +148,7 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Defender Manager.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Windows Defender\Run.exe'; ^
+$Shortcut.TargetPath = '%~dp0Windows Defender\Run.vbs'; ^
 $Shortcut.WorkingDirectory = '%~dp0Windows Defender'; ^
 $Shortcut.IconLocation = '%~dp0Windows Defender\Icon.ico'; ^
 $Shortcut.Save(); ^
@@ -162,8 +162,9 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Cleano.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Cleano\Run.exe'; ^
+$Shortcut.TargetPath = '%~dp0Cleano\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Cleano'; ^
+$Shortcut.IconLocation = '%~dp0Network Device Create\Run.exe'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
