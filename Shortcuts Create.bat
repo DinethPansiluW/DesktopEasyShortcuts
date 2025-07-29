@@ -164,7 +164,7 @@ Start-Sleep -Milliseconds 500; ^
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Cleano.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Cleano\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Cleano'; ^
-$Shortcut.IconLocation = '%~dp0Network Device Create\Run.exe'; ^
+$Shortcut.IconLocation = '%~dp0Cleano\Run.exe'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
