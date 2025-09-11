@@ -174,12 +174,17 @@ $Shortcut.WorkingDirectory = '%~dp0Mem Reduct'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Sharp Keys.lnk'); ^
+$Shortcut.TargetPath = '%~dp0SharpKeys\SharpKeys.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Mem Reduct'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^
 $Shortcut.IconLocation = '%~dp0Hibernate\Icon.ico'; ^
 $Shortcut.Save();
-
 
 echo.
 echo %SKYBLUE%Shortcut created according to the recommended order.

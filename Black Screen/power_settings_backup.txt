@@ -1,11 +1,11 @@
 Mode=AC 
-Screen=5 min 
-Sleep=15 min 
-Hibernate=180 min 
-HardDisk=20 min 
+Screen=Never 
+Sleep=Never 
+Hibernate=Never 
+HardDisk=Never 
  
 Mode=BATTERY 
-Screen=3 min 
-Sleep=10 min 
-Hibernate=180 min 
-HardDisk=10 min 
+Screen=10 min 
+Sleep=Never 
+Hibernate=Never 
+HardDisk=Never 
