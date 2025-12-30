@@ -1,5 +1,5 @@
 Mode=AC 
-Screen=Never 
+Screen=5 min 
 Sleep=Never 
 Hibernate=Never 
 HardDisk=Never 

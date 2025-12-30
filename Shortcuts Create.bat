@@ -72,9 +72,9 @@ $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Black Screen.lnk'); ^
-$Shortcut.TargetPath = '%~dp0Black Screen\Run.vbs'; ^
-$Shortcut.WorkingDirectory = '%~dp0Black Screen'; ^
-$Shortcut.IconLocation = '%~dp0Black Screen\Icon.ico'; ^
+$Shortcut.TargetPath = '%~dp0Monitor OFF\Monitor OFF.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Monitor OFF'; ^
+$Shortcut.IconLocation = '%~dp0Monitor OFF\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
