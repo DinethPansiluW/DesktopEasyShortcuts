@@ -71,6 +71,13 @@ $Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\Icon.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Brightness Controller.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Brightness Controller\Run.bat'; ^
+$Shortcut.WorkingDirectory = '%~dp0Brightness Controller'; ^
+$Shortcut.IconLocation = '%~dp0Brightness Controller\Icon.ico'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Black Screen.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Monitor OFF\Monitor OFF.exe'; ^
 $Shortcut.WorkingDirectory = '%~dp0Monitor OFF'; ^
