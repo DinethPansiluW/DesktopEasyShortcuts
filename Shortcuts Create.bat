@@ -194,6 +194,12 @@ $Shortcut.WorkingDirectory = '%~dp0Mem Reduct'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Context Menu Manager.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Context Menu Manager\ContextMenuManager.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Context Menu Manager'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^
