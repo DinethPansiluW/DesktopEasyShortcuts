@@ -154,6 +154,13 @@ $Shortcut.IconLocation = '%~dp0Wi-Fi ON OFF\WiFiNameChange.ico'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Startup Settings.lnk'); ^
+$Shortcut.TargetPath = '%~dp0- Startup Settings'; ^
+$Shortcut.WorkingDirectory = '%~dp0- Startup Settings'; ^
+$Shortcut.IconLocation = '%SystemRoot%\System32\imageres.dll,102'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Windows Defender Manager.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Windows Defender\Run.exe'; ^
 $Shortcut.WorkingDirectory = '%~dp0Windows Defender'; ^
