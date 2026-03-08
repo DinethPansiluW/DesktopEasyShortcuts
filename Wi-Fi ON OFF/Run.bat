@@ -1,5 +1,5 @@
 @echo off
-set "WiFiName=Dialog 4G 421"
+set "WiFiName=SLT 4G 5"
 
 netsh interface show interface name="Wi-Fi" | findstr /C:"Connected" >nul
 if %errorlevel%==0 (
