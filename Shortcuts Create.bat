@@ -207,6 +207,12 @@ $Shortcut.WorkingDirectory = '%~dp0Context Menu Manager'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Parition Speed Tester.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Crystal Disk Mark\DiskMark64.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Crystal Disk Mark'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^
