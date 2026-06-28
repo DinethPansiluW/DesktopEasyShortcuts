@@ -213,6 +213,12 @@ $Shortcut.WorkingDirectory = '%~dp0Crystal Disk Mark'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- HWinfo.lnk'); ^
+$Shortcut.TargetPath = '%~dp0HWinfo\HWiNFO64.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Crystal Disk Mark'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^

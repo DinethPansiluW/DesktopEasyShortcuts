@@ -106,7 +106,7 @@ if defined TaskWiFiEnabled (
     if errorlevel 1 (
         echo %RED%ERROR:%RESET% Could not delete task. Ensure the task exists and you have permissions.
     ) else (
-        echo %GREEN%Disabled.%RESET%
+        echo %RED%Disabled.%RESET%
     )
 ) else (
     echo %ORANGE%Enabling Wi-Fi OFF schedule...%RESET%
@@ -138,7 +138,7 @@ if defined TaskRenewEnabled (
     if errorlevel 1 (
         echo %RED%ERROR:%RESET% Could not delete task. Ensure the task exists and you have permissions.
     ) else (
-        echo %GREEN%Disabled.%RESET%
+        echo %RED%Disabled.%RESET%
     )
 ) else (
     echo %ORANGE%Enabling Daily Renewal...%RESET%
