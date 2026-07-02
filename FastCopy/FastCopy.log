@@ -1,0 +1,77 @@
+=================================================
+FastCopy(ver5.11.3) start at 2026/06/30 20:52:07
+<Source>  "G:\New folder (1)\"; "G:\New folder (2)\"; "G:\New folder (3)\"; "G:\New folder (4)\"; "G:\New folder (8)\"; "G:\Smart TV\"; G:\SpiderMan\
+<DestDir> F:\
+<Command> Copy (Overwrite)
+<FileLog> D:\- Softwares\FastCopy\Log\20260630-205207-0.log
+-------------------------------------------------
+ No Errors
+
+TotalRead  = 185,414 MiB
+TotalWrite = 185,414 MiB
+TotalFiles = 74 (11)
+TotalTime  = 56:47
+TransRate  = 57.1 MB/s
+FileRate   = 0.02 files/s
+
+Result : (ErrFiles : 0 / ErrDirs : 0) at 2026/06/30 21:48:54
+
+=================================================
+FastCopy(ver5.11.3) start at 2026/06/30 21:52:17
+<Source>  "G:\- Series\"; "G:\- Thaththa\"; G:\Malli\
+<DestDir> F:\
+<Command> Copy (Overwrite)
+<FileLog> D:\- Softwares\FastCopy\Log\20260630-215217-0.log
+-------------------------------------------------
+ No Errors
+
+TotalRead  = 59,468 MiB
+TotalWrite = 59,468 MiB
+TotalFiles = 29 (6)
+TotalTime  = 17:55
+TransRate  = 58.0 MB/s
+FileRate   = 0.03 files/s
+
+Result : (ErrFiles : 0 / ErrDirs : 0) at 2026/06/30 22:10:12
+
+=================================================
+FastCopy(ver5.11.3) start at 2026/06/30 22:17:50
+<Source>  "G:\- Movies\"
+<DestDir> F:\
+<Command> Copy (Overwrite)
+<FileLog> D:\- Softwares\FastCopy\Log\20260630-221750-0.log
+-------------------------------------------------
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\Thandel (2025) Telugu WEB-DL-[CineSubz.co]-1080p.mp4
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\War.of.the.Worlds.2005.BluRay-[CineSubz.com]-1080P.mp4
+
+TotalRead  = 128,571 MiB
+TotalWrite = 128,565 MiB
+TotalFiles = 61 (5)
+TotalTime  = 42:19
+TransRate  = 53.1 MB/s
+FileRate   = 0.02 files/s
+
+Result : (ErrFiles : 4 / ErrDirs : 0) at 2026/06/30 23:00:09
+
+=================================================
+FastCopy(ver5.11.3) start at 2026/06/30 23:32:40
+<Source>  G:\
+<DestDir> F:\
+<Command> Diff (No overwrite)
+<FileLog> D:\- Softwares\FastCopy\Log\20260630-233240-0.log
+-------------------------------------------------
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\Thandel (2025) Telugu WEB-DL-[CineSubz.co]-1080p.mp4
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\War.of.the.Worlds.2005.BluRay-[CineSubz.com]-1080P.mp4
+FindFirstFileEx(Access is denied.5) : G:\System Volume Information\*
+
+TotalRead  = 33,631 MiB
+TotalWrite = 33,625 MiB
+TotalFiles = 13 (0)
+TotalSkip  = 372,630 MiB
+SkipFiles  = 166 (0)
+TotalTime  = 12:01
+TransRate  = 48.9 MB/s
+FileRate   = 0.02 files/s
+
+Result : (ErrFiles : 4 / ErrDirs : 1) at 2026/06/30 23:44:41
+

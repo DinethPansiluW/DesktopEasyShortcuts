@@ -219,6 +219,30 @@ $Shortcut.WorkingDirectory = '%~dp0Crystal Disk Mark'; ^
 $Shortcut.Save(); ^
 Start-Sleep -Milliseconds 500; ^
 
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- FastCopy.lnk'); ^
+$Shortcut.TargetPath = '%~dp0FastCopy\FastCopy.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0FastCopy'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\AnyDesk.lnk'); ^
+$Shortcut.TargetPath = '%~dp0AnyDesk\AnyDesk.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0AnyDesk'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\Hard Disk Sentinel.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Hard Disk Sentinel\HDSentinel.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Hard Disk Sentinel'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
+$Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\Partition Expert.lnk'); ^
+$Shortcut.TargetPath = '%~dp0Partition Expert\dm.exe'; ^
+$Shortcut.WorkingDirectory = '%~dp0Partition Expert'; ^
+$Shortcut.Save(); ^
+Start-Sleep -Milliseconds 500; ^
+
 $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_DIR%\Additional\- Hibernate.lnk'); ^
 $Shortcut.TargetPath = '%~dp0Hibernate\Run.bat'; ^
 $Shortcut.WorkingDirectory = '%~dp0Hibernate'; ^

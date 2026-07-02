@@ -1,0 +1,34 @@
+=================================================
+FastCopy(ver5.11.3) start at 2026/06/30 23:32:40
+<Source>  G:\
+<DestDir> F:\
+<Command> Diff (No overwrite)
+-------------------------------------------------
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\Thandel (2025) Telugu WEB-DL-[CineSubz.co]-1080p.mp4
+ReadFile(The request failed due to a fatal device hardware error.483) : G:\- Movies\War.of.the.Worlds.2005.BluRay-[CineSubz.com]-1080P.mp4
++ F:\New folder\CineSubz.com - Alien.Covenant.2017.1080p.BluRay (1).mp4   <20250426-075450 1,926,179,236>
++ F:\New folder\CineSubz.com - Independence.Day.Resurgence.2016.1080p.BluRay.mp4   <20250427-044150 2,092,192,304>
++ F:\New folder\CineSubz.com - NAYATTU_2021_Malayalam_Proper_HDRip-1080P (2).mp4   <20250419-210036 2,430,893,329>
++ F:\New folder\CineSubz.com - SHERSHAAH (2021) Hindi HDRip - 1080p.mkv   <20250426-062239 2,387,369,250>
++ F:\New folder\CineSubz.com -Rangasthalam (2018)[Telugu Orig - 720p.mp4   <20250426-072517 2,014,739,397>
++ F:\New folder\Dada (2023) Tamil WEB-DL-[CineSubz.co]-1080p.mp4   <20250426-064424 2,094,324,742>
++ F:\New folder\Kantara (2022) Kannada WEB-DL-[CineSubz.co]-1080p.mp4   <20250427-042727 2,825,357,112>
++ F:\New folder\Laapataa Ladies (2023) Hindi WEB-DL-[CineSubz.co]-1080p.mp4   <20250426-072827 3,063,977,054>
++ F:\New folder\Manamey (2024) Telugu WEB-DL-[CineSubz.co]-1080p.mp4   <20250426-074407 3,803,692,167>
++ F:\New folder\Maniyarayile Ashokan (2020) [www.cinesubz.com] 720p.mp4   <20250426-060436 1,104,583,645>
++ F:\New folder\Run Baby Run (2023) Tamil WEB-DL-[CineSubz.co]-1080p.mp4   <20250426-065319 2,383,933,265>
++ F:\New folder\T-34 2018 WEBRip-[CineSubz.co]-1080p.mp4   <20250427-045048 2,586,377,997>
++ F:\New folder\www.CineSubz.com - SARPATTA PARAMBARAI (2021) 1080p.mkv   <20250427-045722 4,398,035,469>
+FindFirstFileEx(Access is denied.5) : G:\System Volume Information\*
+
+TotalRead  = 33,631 MiB
+TotalWrite = 33,625 MiB
+TotalFiles = 13 (0)
+TotalSkip  = 372,630 MiB
+SkipFiles  = 166 (0)
+TotalTime  = 12:01
+TransRate  = 48.9 MB/s
+FileRate   = 0.02 files/s
+
+Result : (ErrFiles : 4 / ErrDirs : 1) at 2026/06/30 23:44:41
+
